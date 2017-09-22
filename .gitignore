@@ -1,0 +1,53 @@
+# General rules
+
+.DS_Store
+.sass-cache
+*.css.map
+*.log
+.htaccess
+sftp-config.json
+.sftp-config.json
+config.codekit
+config.rb
+searchreplacedb2
+searchreplacedb2.php
+.searchreplacedb2.php
+
+# Front-end rules
+
+**/dynamic-*.css
+.idea
+node_modules
+
+# WordPress rules
+
+sitemap.xml
+sitemap.xml.gz
+app/advanced-cache.php
+app/backup-db/
+app/backups/
+app/blogs.dir/
+app/cache/
+app/upgrade/
+app/uploads/
+app/wp-cache-config.php
+app/w3tc-config/
+app/object-cache.php
+
+__*.*
+__*/*
+
+# Magento rules
+
+app/etc/local.xml
+downloader/.cache
+downloader/cache.cfg
+downloader/connect.cfg
+var/cache
+var/session
+var/locks
+var/package
+var/importexport
+var/log
+var/report
+media/catalog/product/cache
