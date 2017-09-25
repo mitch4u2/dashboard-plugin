@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Foursites_Dashboard
- * @subpackage Foursites_Dashboard/includes
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Foursites_Dashboard
- * @subpackage Foursites_Dashboard/includes
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/includes
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class Foursites_Dashboard_Activator {
+class FSDP_Activator {
 
 	/**
 	 * Short Description. (use period)

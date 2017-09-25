@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    foursites-dashboard
- * @subpackage foursites-dashboard/public
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/public
  */
 
 /**
@@ -16,18 +16,18 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    foursites-dashboard
- * @subpackage foursites-dashboard/public
- * @author     Your Name <email@example.com>
+ * @package    ffoursites-dashboard-plugin
+ * @subpackage ffoursites-dashboard-plugin/public
+ * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class Foursites_Dashboard_Public {
+class FSDP_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $foursites_dashboard    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -68,12 +68,12 @@ class Foursites_Dashboard_Public {
 		 * defined in Plugin_Name_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Plugin_Name_Loader will then create the relationship
+		 * The FSDP_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/plugin-name-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/FSDP-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Foursites_Dashboard_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/plugin-name-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/FSDP-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
- * @author     Your Name <email@example.com>
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/admin
+ * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class Plugin_Name_Admin {
+class FSDP_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -73,7 +73,7 @@ class Plugin_Name_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/plugin-name-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/FSDP-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,8 +96,24 @@ class Plugin_Name_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/plugin-name-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/FSDP-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+
+	public function display_admin_page(){
+		add_menu_page(
+			'Jira Tickets',//page title
+			'Jira Tickets',//menu title
+			'manage_options',//capability
+			'jira-tickets',//menu slug
+			array($this, 'showPage'),//function
+			'https://www.google.nl/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiI5tX9gLnWAhXLZVAKHVjeD_AQjRwIBw&url=https%3A%2F%2Ficonverticons.com%2Ficons%2Fa8dda0e01bb0031b%2F&psig=AFQjCNHbdIBeXkpW1KGge7z5CCg9T6rTag&ust=1506177066340825',//icon url
+			'3.0'//position in the menu
+		);
+	}
+	public function showPage(){
+		include plugin_dir_path(__FILE__ ).'partials/FSDP-admin-display.php';
 	}
 
 }

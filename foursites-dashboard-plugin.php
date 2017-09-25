@@ -14,14 +14,14 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Foursites Dashboard
- * Plugin URI:        http://example.com/plugin-name-uri/
+ * Plugin URI:        http://www.foursites.nl/
  * Description:       Foursites Client Dash Plugin
  * Version:           1.0.0
  * Author:            Foursites
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       Foursites Dashboard
+ * Text Domain:       foursites-dashboard-plugin
  * Domain Path:       /languages
  */
 
@@ -36,28 +36,28 @@ define( 'PLUGIN_VERSION', '1.0.0' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-function activate_foursites_dashboard() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-foursites-dashboard-activator.php';
-	Foursites_Dashboard_Activator::activate();
+function activate_FSDP() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-FSDP-activator.php';
+	FSDP_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
-function deactivate_foursites_dashboard() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-foursites-dashboard-deactivator.php';
-	Foursites_Dashboard_Deactivator::deactivate();
+function deactivate_FSDP() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-FSDP-deactivator.php';
+	FSDP_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_foursites_dashboard' );
-register_deactivation_hook( __FILE__, 'deactivate_foursites_dashboard' );
+register_activation_hook( __FILE__, 'activate_FSDP' );
+register_deactivation_hook( __FILE__, 'deactivate_FSDP' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-foursites_dashboard.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-FSDP.php';
 
 /**
  * Begins execution of the plugin.
@@ -68,10 +68,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-foursites_dashboard.php';
  *
  * @since    1.0.0
  */
-function run_foursites_dashboard() {
+function run_FSDP() {
 
-	$plugin = new Foursites_Dashboard();
+	$plugin = new FSDP();
 	$plugin->run();
 
 }
-run_foursites_dashboard();
+run_FSDP();

@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Foursites_Dashboard
- * @subpackage Foursites_Dashboard/includes
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Foursites_Dashboard
- * @subpackage Foursites_Dashboard/includes
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/includes
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class Foursites_Dashboard_i18n {
+class FSDP_i18n {
 
 
 	/**

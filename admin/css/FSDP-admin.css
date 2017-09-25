@@ -1,0 +1,11 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+.wrap{
+	text-align: center;
+	color: #003366;
+	font-size: 40px;
+	font-weight:bolder;
+	margin-top: 30px;
+}
