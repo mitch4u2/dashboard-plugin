@@ -4,7 +4,7 @@
  * The plugin bootstrap file
  *
  * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
+ * admin area. This file also inc all of the dependencies used by the plugin,
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
@@ -26,38 +26,35 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'WPINC' ) ) { die; }
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php')){
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 }
-
 define( 'PLUGIN_VERSION', '1.0.0' );
+
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-plugin-name-activator.php
+ * This action is documented in inc/class-plugin-name-activator.php
  */
-function activate_FSDP() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-FSDP-activator.php';
-	FSDP_Activator::activate();
-}
-
+function activate_FSDP() { inc\Activate::activate(); }
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-plugin-name-deactivator.php
+ * This action is documented in inc/class-plugin-name-deactivator.php
  */
-function deactivate_FSDP() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-FSDP-deactivator.php';
-	FSDP_Deactivator::deactivate();
-}
+function deactivate_FSDP() { inc\Deactivate::deactivate(); }
 
 register_activation_hook( __FILE__, 'activate_FSDP' );
 register_deactivation_hook( __FILE__, 'deactivate_FSDP' );
+
+
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-FSDP.php';
+
+//require plugin_dir_path( __FILE__ ) . 'inc/class-FSDP.php';
 
 /**
  * Begins execution of the plugin.
@@ -69,9 +66,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-FSDP.php';
  * @since    1.0.0
  */
 function run_FSDP() {
-
-	$plugin = new FSDP();
+	$plugin = new inc\FSDP();
 	$plugin->run();
-
 }
 run_FSDP();

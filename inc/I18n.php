@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -10,7 +9,7 @@
  * @since      1.0.0
  *
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  */
 
 /**
@@ -21,27 +20,24 @@
  *
  * @since      1.0.0
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class FSDP_i18n {
 
+namespace inc;
 
+class I18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
 
+	public function load_plugin_textdomain() {
 		load_plugin_textdomain(
 			'plugin-name',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

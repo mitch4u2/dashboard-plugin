@@ -17,3 +17,6 @@
 <div class="wrap">
 JIRA TICKET
 </div>
+<button id="posts-btn">LOAD POSTS</button>
+<div id="posts-container"></div>
+

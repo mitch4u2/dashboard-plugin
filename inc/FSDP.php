@@ -3,14 +3,14 @@
 /**
  * The file that defines the core plugin class
  *
- * A class definition that includes attributes and functions used across both the
+ * A class definition that inc attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
  * @link       http://example.com
  * @since      1.0.0
  *
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  */
 
 /**
@@ -24,9 +24,12 @@
  *
  * @since      1.0.0
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
+
+namespace inc;
+
 class FSDP {
 
 	/**
@@ -35,7 +38,7 @@ class FSDP {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      FSDP_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -73,12 +76,10 @@ class FSDP {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'foursites-dashboard-plugin';
-
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -86,8 +87,8 @@ class FSDP {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - FSDP_Loader. Orchestrates the hooks of the plugin.
-	 * - FSDP_i18n. Defines internationalization functionality.
+	 * - Loader. Orchestrates the hooks of the plugin.
+	 * - I18n. Defines internationalization functionality.
 	 * - FSDP_Admin. Defines all hooks for the admin area.
 	 * - FSDP_Public. Defines all hooks for the public side of the site.
 	 *
@@ -103,33 +104,41 @@ class FSDP {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-FSDP-loader.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-FSDP-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-FSDP-i18n.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-FSDP-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-FSDP-admin.php';
-
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'adm/Admin.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'pub/Front.php';
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-FSDP-public.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/Public.php';
 
-		$this->loader = new FSDP_Loader();
+		$this->loader = new Loader();
+
+
+
+		/*register_setting('jira_user', 'email' );
+		add_settings_section( 'jira-setting-section', 'Setting Form', 'jira_setting_section', 'jira_settings' );
+		add_settings_field( 'setting-form', 'jira-setting-form', 'showSettingsPage', 'jira_settings', 'jira-setting-section');
+		*/
+
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the FSDP_i18n class in order to set the domain and to register the hook
+	 * Uses the I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +146,7 @@ class FSDP {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new FSDP_i18n();
+		$plugin_i18n = new I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -151,13 +160,22 @@ class FSDP {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
-		$plugin_admin = new FSDP_Admin( $this->get_plugin_name(), $this->get_version() );
-
+		$plugin_admin = new \admin\Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'display_admin_page' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingLogin' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingSignin' );
 
+
+		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'prefix_send_email_to_admin' );
+		$this->loader->add_action( 'admin_post_login_form', $plugin_admin, 'prefix_send_email_to_admin' );
+
+		$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
+		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
+
+		//$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'display_admin_page' );
+		$this->loader->add_filter( 'plugin_action_links_foursites-dashboard-plugin/foursites-dashboard-plugin.php',$plugin_admin,'settings_link');
 	}
 
 	/**
@@ -168,12 +186,9 @@ class FSDP {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
-		$plugin_public = new FSDP_Public( $this->get_plugin_name(), $this->get_version() );
-
+		$plugin_public = new \front\Front( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -195,12 +210,11 @@ class FSDP {
 	public function get_plugin_name() {
 		return $this->plugin_name;
 	}
-
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    FSDP_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

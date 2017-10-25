@@ -7,7 +7,7 @@
  * @since      1.0.0
  *
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  */
 
 /**
@@ -18,10 +18,13 @@
  * run function to execute the list of actions and filters.
  *
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class FSDP_Loader {
+
+namespace inc;
+
+class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
@@ -77,7 +80,7 @@ class FSDP_Loader {
 	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
-	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 2 ) {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 

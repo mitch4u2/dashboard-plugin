@@ -1,26 +1,29 @@
 <?php
 
 /**
- * Fired during plugin activation
+ * Fired during plugin deactivation
  *
  * @link       http://example.com
  * @since      1.0.0
  *
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  */
 
 /**
- * Fired during plugin activation.
+ * Fired during plugin deactivation.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
  * @package    foursites-dashboard-plugin
- * @subpackage foursites-dashboard-plugin/includes
+ * @subpackage foursites-dashboard-plugin/inc
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class FSDP_Activator {
+
+namespace inc;
+
+class Deactivate {
 
 	/**
 	 * Short Description. (use period)
@@ -29,7 +32,7 @@ class FSDP_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function deactivate() {
 
 	}
 

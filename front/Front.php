@@ -15,12 +15,15 @@
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
- *
- * @package    ffoursites-dashboard-plugin
- * @subpackage ffoursites-dashboard-plugin/public
+ *s
+ * @package    foursites-dashboard-plugin
+ * @subpackage foursites-dashboard-plugin/publics
  * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
  */
-class FSDP_Public {
+
+namespace front;
+
+class Front {
 
 	/**
 	 * The ID of this plugin.
