@@ -174,66 +174,74 @@ class Admin{
 	function loginForm(){
 		$options = get_option( 'login');
 		$checked = (@$options == 1 ? 'checked' : '');
-		echo '
-		<label>
+		if (isset($_GET['error'])) {
+			echo "<label><b>Username or password is wrong</b></label><br>";
+			echo $_GET['error'];}
+			echo '
+			<label>
 			<input type="checkbox" id="login" name="login" value="" '.$checked.' />
 			Activate the custom header
-		</label><br>
-		<label>
-			<input type="text" id="username" name="username" value="" placeholder="username or email" />
+			</label><br>
+			<label>
+			<input type="text" id="username" name="username" value="" placeholder="username or email" required />
 			Username
-		</label><br>
-		<label>
-			<input type="password" id="password" name="password" value="" />
-			Password
-		</label><br>
-		<input type="hidden" name="action" value="login_form">
-		';
-	}
+			</label><br>
+			<label>
+			<input type="password" id="password" name="password" value="" /*pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"*/ required/>
 
-	function signinForm(){
-		$options = get_option( 'signin');
-		$checked = (@$options == 1 ? 'checked' : '');
+			Password
+			</label><br>
+			<a href="http://jira.foursites.nl/secure/ForgotLoginDetails.jspa" target="_blank">forget my password</a>
+			<input type="hidden" name="action" value="login_form">
+			';
+		}
+
+		function signinForm(){
+			$options = get_option( 'signin');
+			$checked = (@$options == 1 ? 'checked' : '');
+		/*if (!empty($result)) {
+			echo $result;
+		}*/
+		if (isset($_GET['info'])) {
+			echo "<label><b>Username or password is wrong</b></label><br>";
+			echo $_GET['info'];}
 		echo '
 		<label>
-			<input type="checkbox" id="signin" name="signin" value="Mr anderson Welcome Back we missed you" '.$checked.' />
-			Activate the custom header
+		<input type="checkbox" id="signin" name="signin" value="Mr anderson Welcome Back we missed you" '.$checked.' />
+		Activate the custom header
 		</label><br>
 		<label>
-			<input type="text" id="username" name="username" value="" placeholder="username" />
-			Username
+		<input type="text" id="username" name="username" value="" placeholder="username" required/>
+		Username
 		</label><br>
 		<label>
-			<input type="email" id="email" name="email" value="" placeholder="email" />
-			Email
+		<input type="text" id="name" name="name" value="" placeholder="name" required/>
+		name
 		</label><br>
 		<label>
-			<input type="password" id="password" name="password" value="" />
-			Password
+		<input type="email" id="email" name="email" value="" placeholder="email" required/>
+		Email
+		</label><br>
+		<label>
+		<input type="password" id="password" name="password" value="" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+		Password
 		</label><br>
 		<input type="hidden" name="action" value="signin_form">
 		';
 	}
 
 
-	function prefix_send_email_to_admin() {
-    /**
-     * At this point, $_GET/$_POST variable are available
-     *
-     * We can do our normal processing here
-     */
+	function login() {
+		status_header(200);
+		$user = new User('','');
+		$user->login($_POST['username'],$_POST['password']);
 
-    status_header(200);
-    $user = new User('','');
-    //$user->search_issue($_POST['username'],$_POST['password']);
-    $user->signin($_POST['username'],$_POST['password']);
-    //die("Server received '{$_REQUEST['username']}' from your browser.");
-    //request handlers should die() when they complete their task
-    //echo 'Hello World';
-    //echo $_REQUEST['data'];
-    // Sanitize the POST field
-    // Generate email content
-    // Send to appropriate email
+
+	}
+	function signin() {
+		status_header(200);
+		$user = new User('','');
+		$user->signin($_POST['username'],$_POST['password'],$_POST['name'],$_POST['email']);
 	}
 
 }

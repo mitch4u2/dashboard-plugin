@@ -167,15 +167,18 @@ class FSDP {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingLogin' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingSignin' );
 
+		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'login' );
+		$this->loader->add_action( 'admin_post_login_form', $plugin_admin, 'login' );
+		$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'signin' );
+		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'signin' );
 
-		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'prefix_send_email_to_admin' );
-		$this->loader->add_action( 'admin_post_login_form', $plugin_admin, 'prefix_send_email_to_admin' );
-
-		$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
-		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
+		/*$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
+		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );*/
 
 		//$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'display_admin_page' );
 		$this->loader->add_filter( 'plugin_action_links_foursites-dashboard-plugin/foursites-dashboard-plugin.php',$plugin_admin,'settings_link');
+		$this->loader->add_filter( 'query_vars',$plugin_admin,'parameter_queryvars');
+
 	}
 
 	/**

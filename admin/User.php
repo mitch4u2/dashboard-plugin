@@ -59,12 +59,14 @@ class User {
 
 
 	public function login($username,$password){
-		echo $username.'<br>';
-		echo $password;
+		/*echo $username.'<br>';
+		echo $password;*/
 		//$base64_usrpwd = base64_encode('harm:hu1z3putm4n');
 		$base64_usrpwd = base64_encode($username.':'.$password);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/user?username='.$username);
+		//curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/user?username='.$username);
+		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/myself');
+
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Authorization: Basic '.$base64_usrpwd));
@@ -72,17 +74,23 @@ class User {
 		$ch_error = curl_error($ch);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-		echo '<pre>';
+		/*echo '<pre>';
 		var_dump( $httpcode );
-		echo '</pre>';
+		echo '</pre>';*/
 
-		if ( $httpcode != 200 ) {
-			echo '<h1>MR ANDERSON WELCOME BACK WE MISSED YOU</h1>';
-			echo "cURL Error: $ch_error";
+		//echo $curl_response;
+		if ( $httpcode === 200 ) {
+			wp_redirect( "admin.php?page=jira_tickets", $status = 302 );
+			/*echo '<h1>MR ANDERSON WELCOME BACK WE MISSED YOU</h1>';
+			echo "cURL Error: $ch_error";*/
 
 		} else {
 
-			echo $curl_response;
+			wp_redirect( "admin.php?page=jira_settings" .'&code='.$httpcode );
+			 //wp_redirect( esc_url( add_query_arg( 'error', $httpcode, "admin.php?page=jira_settings" ) ) );
+    		//exit;
+			//wp_redirect( "admin.php?page=jira_settings?error=$httpcode", $status = 302 );
+			/*echo $curl_response;
 			$character = json_decode($curl_response);
 			echo '<br><br><br><br><br><br>';
 			if ( ! empty($character->emailAddress)  ) {
@@ -91,82 +99,41 @@ class User {
 			echo '<br><br>';
 			if ( ! empty($character->displayName)  ) {
 				echo $character->displayName;
-			}else{echo 'EROOR MY BROTHER no email address';}
+			}else{echo 'EROOR MY BROTHER no email address';}*/
 
 		}
 
 		curl_close($ch);
+
 
 
 	}
 
 
 
-	public function signin($username,$password){
-		/*echo $username.'<br>';
-		echo $password.'<br>';
-		//$base64_usrpwd = base64_encode('harm:hu1z3putm4n');
-		$base64_usrpwd = base64_encode($username.':'.$password);
+	public function signin($username,$password,$name,$email){
+
+		$base64_usrpwd = base64_encode('wiljon:weEw4BTpsh6h');
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/user?username='.$username);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Authorization: Basic '.$base64_usrpwd));
-		$curl_response = curl_exec($ch);
-		$ch_error = curl_error($ch);
-		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-		echo '<pre>';
-		var_dump( $httpcode );
-		echo '</pre>';
-
-		if ($httpcode != 201 ) {
-			echo '<h1>MR ANDERSON WELCOME BACK WE MISSED YOU</h1>';
-			echo "cURL Error: $ch_error";
-
-		} else {
-
-			echo $curl_response;
-			$character = json_decode($curl_response);
-			echo '<br><br><br><br><br><br>';
-			if ( ! empty($character->emailAddress)  ) {
-				echo $character->emailAddress;
-			}else{echo 'EROOR MY BROTHER no email address';}
-			echo '<br><br>';
-			if ( ! empty($character->displayName)  ) {
-				echo $character->displayName;
-			}else{echo 'EROOR MY BROTHER no email address';}
-
-		}
-
-		curl_close($ch);
-
-
-*/
-
-
-
-
-		$base64_usrpwd = base64_encode($username.':'.$password);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/servicedeskapi/customer');
+		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/user');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',
-			'X-ExperimentalApi: opt-in',
 			'Authorization: Basic '.$base64_usrpwd));
-		$arr['email'] = 'wrabbit@live.fr';
-		$arr['fullName'] = 'abracadabra';
+		$arr['name'] = $username;
+		$arr['emailAddress'] = $email;
+		$arr['displayName'] = $name;
+		$arr['notification'] = true;
 		$json_string = json_encode ($arr);
 		curl_setopt($ch, CURLOPT_POSTFIELDS,$json_string);
 		$result = curl_exec($ch);
+
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
-		echo $result;
+		wp_redirect( "admin.php?page=jira_settings" .'&info='.$httpcode );
 
-
-
-
+/*
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/password/policy/updateUser');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -175,23 +142,25 @@ class User {
 			'X-ExperimentalApi: opt-in',
 			'Authorization: Basic '.$base64_usrpwd));
 		$arr['username'] = 'wrabbit@live.fr';
-		$arr['oldPassword'] = 'abracadabra';
+		$arr['oldPassword'] = '';
+		$arr['newPassword'] = 'Switchmitch21%';
 		$json_string = json_encode ($arr);
 		curl_setopt($ch, CURLOPT_POSTFIELDS,$json_string);
 		$result = curl_exec($ch);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		echo '<pre>';
+		var_dump( $httpcode );
+		echo '</pre>';
 		curl_close($ch);
+		echo $result;*/
+	/*
 
-		echo $result;
-
-
-
-
-
-		{
-    "username": "fred",
-    "oldPassword": "secret",
-    "newPassword": "correcthorsebatterystaple"
-}
+			{
+	    "username": "fred",
+	    "oldPassword": "secret",
+	    "newPassword": "correcthorsebatterystaple"
+	}*/
 
 		/*$ch_error = curl_error($ch);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -255,11 +224,6 @@ class User {
 		}
 
 		curl_close($ch);
-
-
-
-
-
 
 
 

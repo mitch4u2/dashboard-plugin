@@ -25,6 +25,7 @@ Hello
 	<?php settings_fields( 'jira_user_login' ) ?>
 	<?php do_settings_sections( 'jira_settings_login' ); ?>
 	<?php submit_button( 'Login', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+
 </form>
 
 
