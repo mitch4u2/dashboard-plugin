@@ -163,23 +163,45 @@ class FSDP {
 		$plugin_admin = new \admin\Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'display_admin_page' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'display_admin_page');
+
+		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'toolbar_jira',999 );
+
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingLogin' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingSignin' );
+
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreate' );
+
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingUpdate' );
+
 
 		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'login' );
 		$this->loader->add_action( 'admin_post_login_form', $plugin_admin, 'login' );
 		$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'signin' );
 		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'signin' );
 
+		$this->loader->add_action( 'admin_post_nopriv_create_form', $plugin_admin, 'create' );
+		$this->loader->add_action( 'admin_post_create_form', $plugin_admin, 'create' );
+
+		$this->loader->add_action( 'admin_post_nopriv_update_form', $plugin_admin, 'update' );
+		$this->loader->add_action( 'admin_post_update_form', $plugin_admin, 'update' );
+
+		//Testing ajax button
+		$this->loader->add_action( 'wp_ajax_nopriv_load_ajax', $plugin_admin, 'load_ajax' );
+		$this->loader->add_action( 'wp_ajax_load_ajax', $plugin_admin, 'load_ajax' );
+
+		$this->loader->add_action( 'wp_ajax_nopriv_load_issue', $plugin_admin, 'load_issue' );
+		$this->loader->add_action( 'wp_ajax_load_issue', $plugin_admin, 'load_issue' );
+
+
 		/*$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );
 		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );*/
 
 		//$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'display_admin_page' );
 		$this->loader->add_filter( 'plugin_action_links_foursites-dashboard-plugin/foursites-dashboard-plugin.php',$plugin_admin,'settings_link');
-		$this->loader->add_filter( 'query_vars',$plugin_admin,'parameter_queryvars');
 
 	}
+
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality

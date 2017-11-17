@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /**
  * Provide a Settings area view for the plugin
@@ -14,11 +14,7 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
-<div id="med">
 <h1>LOGIN</h1>
-Hello
-</div>
 <?php settings_errors(); ?>
 
 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
