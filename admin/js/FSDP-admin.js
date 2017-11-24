@@ -89,6 +89,8 @@ jQuery(document).ready( function ($) {
 				$('.dateinprogress').html(open);
 				$('.author').html(author);
 
+				$('#issuekeycomment').val(key);
+
 
 				$( "#inprogress" ).removeClass( "complete" );
 				$( "#done" ).removeClass( "complete" );
@@ -103,26 +105,34 @@ jQuery(document).ready( function ($) {
 					$( "#done" ).addClass( "complete" );
 				}
 
+
+
+
+				$( ".comment-container" ).html(" ");
+
 				$.each(comments,function(key,value){
 					console.log(value['author']['avatarUrls']['32x32']);
 					var avatar = value['author']['avatarUrls']['16x16'];
-
-					//$.('.comment-container').html('');
-
-								/*$( ".comment-container" ).html(function() {
-									var emphasis = "<div class='comment-wrap'><div class='photo'><div class='avatar' style='background-image: url("+avatar+")'></div></div><div class='comment-block'><p class='comment-text'>Mohamed Hajjej</p><div class='bottom-comment'><div class='comment-date'>Aug 24, 2014 @ 2:35 PM</div><ul class='comment-actions'><li class='complain'>Complain</li><li class='reply'>Reply</li></ul></div></div></div>";
-									return emphasis;
-								});*/
+					var date = value['created'];
+					var body = value['body'];
 
 
-								$( ".comment-container" ).html(function() {
-									$( ".comment-container" ).html("<div class='comment-wrap'><div class='photo'><div class='avatar' style='background-image: url("+avatar+")'></div></div><div class='comment-block'><p class='comment-text'>Mohamed Hajjej</p><div class='bottom-comment'><div class='comment-date'>Aug 24, 2014 @ 2:35 PM</div><ul class='comment-actions'><li class='complain'>Complain</li><li class='reply'>Reply</li></ul></div></div></div>");
-								});
+					$( ".comment-container" ).append("\
+						<div class='comment-wrap'>\
+						<div class='photo'>\
+						<div class='avatar' style='background-image: url("+avatar+")'></div>\
+						</div>\
+						<div class='comment-block'>\
+						<p class='comment-text'>"+body+"</p>\
+						<div class='bottom-comment'>\
+						<div class='comment-date'>Aug 24, 2014 @ 2:35 PM  ==> </div>\
+						<div class='comment-date'>"+date+"</div>\
+						<ul class='comment-actions'>\
+						<li class='complain'>Complain</li>\
+						<li class='reply'>Reply</li></ul></div></div></div>");
 
 
-
-							});
-
+				});
 
 			}
 
@@ -132,6 +142,127 @@ jQuery(document).ready( function ($) {
 	});
 });
 
+
+
+/* Ajax Functions fro modal View Ticket */
+jQuery(document).ready( function ($) {
+	$( ".role" ).change(function() {
+
+		var that = $(this);
+		var id = that.val();
+		//$(".desc").html(id);
+		var ajaxurl = that.data('url');
+		//$(".desc").html(ajaxurl);
+
+		$.ajax({
+			url : ajaxurl,
+			type : 'post',
+			data : {
+				id : id,
+				action : 'load_role'
+			},
+			error : function ( response ) {
+				console.log(response);
+			},
+			success : function ( response ) {
+				console.log(response);
+
+
+				var arr = JSON.parse(response);
+				console.log(arr['capabilities']);
+				var caps = arr['capabilities'];
+
+				$.each(caps,function(key,value){
+					console.log(key);
+					$('ul#tags').append('<li><a href="#">'+key+'<span>4</span></a>');
+					});
+				/*
+				var status = arr['fields']['status']['statusCategory']['name'];
+				var comments = arr['fields']['comment']['comments'];
+				var key = arr['key'];
+				var summary = arr['fields']['summary'];
+				var statusname = arr['fields']['status']['name'];
+				var author ="Unassigned";
+
+
+				//console.log((arr['fields']['assignee']).length);
+				if ( arr['fields']['assignee'] != null ){
+					author = arr['fields']['assignee']['displayName'];
+				}
+				var created = "../../..";
+				var done = "../../..";
+				var open = "../../..";
+
+				if (arr['fields']['created']) {
+					created = arr['fields']['created'].substr(0, 16).replace("T"," ");
+				}
+				if (arr['fields']['resolutiondate']) {
+					done = arr['fields']['resolutiondate'].substr(0, 16).replace("T"," ");
+				}
+				if (arr['fields']['updated']) {
+					open = arr['fields']['updated'].substr(0, 16).replace("T"," ");
+				}
+
+				$('.issueKey').html(key);
+				$('.modaltitle').html(summary);
+				$('.statusname').html(statusname);
+				$('.datetodo').html(created);
+				$('.datedone').html(done);
+				$('.dateinprogress').html(open);
+				$('.author').html(author);
+
+				$('#issuekeycomment').val(key);
+
+
+				$( "#inprogress" ).removeClass( "complete" );
+				$( "#done" ).removeClass( "complete" );
+
+				if (status === 'In Progress')
+				{
+					$( "#inprogress" ).addClass( "complete" );
+				}
+				if (status === 'Done')
+				{
+					$( "#inprogress" ).addClass( "complete" );
+					$( "#done" ).addClass( "complete" );
+				}
+
+
+
+
+				$( ".comment-container" ).html(" ");
+
+				$.each(comments,function(key,value){
+					console.log(value['author']['avatarUrls']['32x32']);
+					var avatar = value['author']['avatarUrls']['16x16'];
+					var date = value['created'];
+					var body = value['body'];
+
+
+					$( ".comment-container" ).append("\
+						<div class='comment-wrap'>\
+						<div class='photo'>\
+						<div class='avatar' style='background-image: url("+avatar+")'></div>\
+						</div>\
+						<div class='comment-block'>\
+						<p class='comment-text'>"+body+"</p>\
+						<div class='bottom-comment'>\
+						<div class='comment-date'>Aug 24, 2014 @ 2:35 PM  ==> </div>\
+						<div class='comment-date'>"+date+"</div>\
+						<ul class='comment-actions'>\
+						<li class='complain'>Complain</li>\
+						<li class='reply'>Reply</li></ul></div></div></div>");
+
+
+				});*/
+
+			}
+
+		});
+
+
+	});
+});
 
 
 var script = document.createElement("script");

@@ -164,27 +164,43 @@ class FSDP {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'display_admin_page');
-
 		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'toolbar_jira',999 );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingLogin' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingSignin' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreateIssue' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingUpdateIssue' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCommentIssue' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreateRole' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingDeleteRole' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingRenameRole' );
 
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreate' );
 
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingUpdate' );
 
 
 		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'login' );
 		$this->loader->add_action( 'admin_post_login_form', $plugin_admin, 'login' );
+
 		$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'signin' );
 		$this->loader->add_action( 'admin_post_signin_form', $plugin_admin, 'signin' );
 
-		$this->loader->add_action( 'admin_post_nopriv_create_form', $plugin_admin, 'create' );
-		$this->loader->add_action( 'admin_post_create_form', $plugin_admin, 'create' );
+		$this->loader->add_action( 'admin_post_nopriv_create_issue_form', $plugin_admin, 'createIssue' );
+		$this->loader->add_action( 'admin_post_create_issue_form', $plugin_admin, 'createIssue' );
 
-		$this->loader->add_action( 'admin_post_nopriv_update_form', $plugin_admin, 'update' );
-		$this->loader->add_action( 'admin_post_update_form', $plugin_admin, 'update' );
+		$this->loader->add_action( 'admin_post_nopriv_update_issue_form', $plugin_admin, 'updateIssue' );
+		$this->loader->add_action( 'admin_post_update_issue_form', $plugin_admin, 'updateIssue' );
+
+		$this->loader->add_action( 'admin_post_nopriv_comment_issue_form', $plugin_admin, 'commentIssue' );
+		$this->loader->add_action( 'admin_post_comment_issue_form', $plugin_admin, 'commentIssue' );
+
+		$this->loader->add_action( 'admin_post_nopriv_create_role_form', $plugin_admin, 'createRole' );
+		$this->loader->add_action( 'admin_post_create_role_form', $plugin_admin, 'createRole' );
+
+		$this->loader->add_action( 'admin_post_nopriv_delete_role_form', $plugin_admin, 'deleteRole' );
+		$this->loader->add_action( 'admin_post_delete_role_form', $plugin_admin, 'deleteRole' );
+
+		$this->loader->add_action( 'admin_post_nopriv_rename_role_form', $plugin_admin, 'renameRole' );
+		$this->loader->add_action( 'admin_post_rename_role_form', $plugin_admin, 'renameRole' );
 
 		//Testing ajax button
 		$this->loader->add_action( 'wp_ajax_nopriv_load_ajax', $plugin_admin, 'load_ajax' );
@@ -192,6 +208,11 @@ class FSDP {
 
 		$this->loader->add_action( 'wp_ajax_nopriv_load_issue', $plugin_admin, 'load_issue' );
 		$this->loader->add_action( 'wp_ajax_load_issue', $plugin_admin, 'load_issue' );
+
+		$this->loader->add_action( 'wp_ajax_nopriv_load_role', $plugin_admin, 'load_role' );
+		$this->loader->add_action( 'wp_ajax_load_role', $plugin_admin, 'load_role' );
+
+
 
 
 		/*$this->loader->add_action( 'admin_post_nopriv_signin_form', $plugin_admin, 'prefix_send_email_to_admin' );

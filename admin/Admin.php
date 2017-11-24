@@ -17,7 +17,7 @@
  *
  * @package    foursites-dashboard-plugin
  * @subpackage foursites-dashboard-plugin/admin
- * @author     Mohamed Hajjej <mohamed.hajjej@esprit.tn>
+ * @author     Mohamed Hajjej <mohamed.hajjej@foursites.nl>
  */
 
 namespace admin;
@@ -175,17 +175,24 @@ class Admin{
 	}
 
 	function load_ajax(){
-		//global $wpdb;
-		//$pa = intval($_POST["page"]);
 		$pa = 'hello my bRother';
 		echo $pa;
 		wp_die();
 	}
 
 	function load_issue(){
-		//global $wpdb;
 		$pa = $_POST["key"];
 		echo User::getIssue($pa);
+		wp_die();
+	}
+
+	function load_role(){
+		$pa = $_POST["id"];
+		//var_dump($pa);
+		$role = new Role($_POST["id"],'',array());
+		//var_dump($role->name);
+		echo $role->ViewRole();
+		//echo User::getIssue($pa);
 		wp_die();
 	}
 
@@ -199,17 +206,56 @@ class Admin{
 		add_settings_section( 'jira-setting-section', 'Signin Form','' , 'jira_settings_signin' );
 		add_settings_field( 'setting-form', '',array($this->callback, 'signinForm') , 'jira_settings_signin', 'jira-setting-section');
 	}
-	function FsdpSettingCreate(){
-		register_setting('jira_user_create', 'create' );
-		add_settings_section( 'jira-setting-section', 'Create Form','' , 'jira_settings_create' );
-		add_settings_field( 'setting-form', '',array($this->callback, 'createForm') , 'jira_settings_create', 'jira-setting-section');
+	function FsdpSettingCreateIssue(){
+		register_setting('jira_issue_create', 'createIssue' );
+		add_settings_section( 'jira-setting-section', 'Create Issue Form','' , 'jira_settings_create' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'createIssueForm') , 'jira_settings_create', 'jira-setting-section');
 	}
 
-	function FsdpSettingUpdate(){
-		register_setting('jira_user_update', 'update' );
-		add_settings_section( 'jira-setting-section', 'update Form','' , 'jira_settings_update' );
-		add_settings_field( 'setting-form', '',array($this->callback, 'updateForm') , 'jira_settings_update', 'jira-setting-section');
+	function FsdpSettingUpdateIssue(){
+		register_setting('jira_issue_update', 'updateIssue' );
+		add_settings_section( 'jira-setting-section', 'Update Issue Form','' , 'jira_settings_update' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'updateIssueForm') , 'jira_settings_update', 'jira-setting-section');
 	}
+
+	function FsdpSettingCommentIssue(){
+		register_setting('jira_issue_comment', 'commentIssue' );
+		add_settings_section( 'user-role-setting-section', '','' , 'jira_settings_comment' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'commentIssueForm') , 'jira_settings_comment', 'user-role-setting-section');
+	}
+
+	function FsdpSettingCreateRole(){
+		register_setting('user_role_create', 'createRole' );
+		add_settings_section( 'jira-setting-section', 'Create role form','' , 'user_role_settings_create' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'createRoleForm') , 'user_role_settings_create', 'jira-setting-section');
+	}
+
+	function FsdpSettingDeleteRole(){
+		register_setting('user_role_delete', 'deleteRole' );
+		add_settings_section( 'jira-setting-section', 'Delete role form','' , 'user_role_settings_delete' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'deleteRoleForm') , 'user_role_settings_delete', 'jira-setting-section');
+	}
+
+	function FsdpSettingRenameRole(){
+		register_setting('user_role_rename', 'renameRole' );
+		add_settings_section( 'jira-setting-section', 'Rename role form','' , 'user_role_settings_rename' );
+		add_settings_field( 'setting-form', '',array($this->callback, 'renameRoleForm') , 'user_role_settings_rename', 'jira-setting-section');
+	}
+
+	function change_role_name() {
+ /*   global $wp_roles;
+
+    if ( ! isset( $wp_roles ) )
+        $wp_roles = new WP_Roles();
+
+    //You can list all currently available roles like this...
+    //$roles = $wp_roles->get_names();
+    //print_r($roles);
+
+    //You can replace "administrator" with any other role "editor", "author", "contributor" or "subscriber"...
+    $wp_roles->roles['administrator']['name'] = 'Owner';
+    $wp_roles->role_names['administrator'] = 'Owner';*/
+}
 
 	function login() {
 		status_header(200);
@@ -219,13 +265,32 @@ class Admin{
 		status_header(200);
 		User::signin($_POST['username'],$_POST['password'],$_POST['name'],$_POST['email']);
 	}
-	function create() {
+	function createIssue() {
 		status_header(200);
 		User::create($_POST['summary'],$_POST['description'],$_POST['type'],$_POST['priority'],$_POST['page']);
 	}
-	function update() {
+	function updateIssue() {
 		status_header(200);
 		User::update($_POST['issue'],$_POST['summary'],$_POST['description'],$_POST['type'],$_POST['priority']);
+	}
+	function commentIssue() {
+		status_header(200);
+		User::comment($_POST['issuekeycomment'],$_POST['comment']);
+	}
+	function createRole() {
+		status_header(200);
+		$role = new Role($_POST['id'],$_POST['name'],array());
+		$role->CreateRole();
+	}
+	function deleteRole() {
+		status_header(200);
+		$role = new Role($_POST['id'],'',array());
+		$role->DeleteRole();
+	}
+	function renameRole() {
+		status_header(200);
+		$role = new Role($_POST['id'],$_POST['name'],array());
+		$role->RenameRole();
 	}
 
 }

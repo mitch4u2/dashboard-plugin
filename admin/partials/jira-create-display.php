@@ -26,7 +26,9 @@ namespace admin;
 <h1>Create a ticket</h1>
 <?php settings_errors(); ?>
 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'jira_user_create' ) ?>
+	<?php settings_fields( 'jira_issue_create' ); ?>
 	<?php do_settings_sections( 'jira_settings_create' ); ?>
 	<?php submit_button( 'Create', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
 </form>
+
+

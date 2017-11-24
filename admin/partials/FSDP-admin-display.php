@@ -119,7 +119,7 @@ $arr2=$user->Search();
 
 			echo "<tr><td>";
 			foreach ($comments->comments as &$comment) {
-				echo $comment->author->key.'<br>'.$comment->body.'<img src='.User::userInfo((isset($comment->author->key) ? $comment->author->key : "Unassigned")).'>';
+				echo $comment->author->key.'<br>'.$comment->body.'<img style ="width:50px;size:50px;" src='.User::userInfo((isset($comment->author->key) ? $comment->author->key : "Unassigned")).'>';
 			}
 			echo"
 			</td><td id='comment'>".$comments->total."</td>
@@ -208,7 +208,9 @@ $arr2=$user->Search();
 
 	})( jQuery );
 
-
+</script>
+<!-- Script to fill in the update form and to open the model -->
+<script>
 	/*(function( $ ) {
 		$( window ).load(function() {
 			google.charts.load('current', {'packages':['gauge']});
@@ -353,7 +355,7 @@ $arr2=$user->Search();
 		<h1 class='modaltitle'>Update Ticket</h1>
 		<?php settings_errors(); ?>
 		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-			<?php settings_fields( 'jira_user_update' ) ?>
+			<?php settings_fields( 'jira_issue_update' ) ?>
 			<?php do_settings_sections( 'jira_settings_update' ); ?>
 			<?php submit_button( 'Update', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
 		</form>
@@ -411,18 +413,26 @@ $arr2=$user->Search();
 							<div class="photo">
 								<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
 							</div>
-							<div class="comment-block">
+
+							<!-- <div class="comment-block">
 								<form action="">
 									<textarea name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
 								</form>
-							</div>
+							</div> -->
+							<div class="comment-block">
+							<?php settings_errors(); ?>
+							<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+								<?php settings_fields( 'jira_issue_comment' ); ?>
+								<?php do_settings_sections( 'jira_settings_comment' ); ?>
+								<?php submit_button( 'Comment', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+							</form>
+						</div>
+
 						</div>
 
 
 
 						<div class="comment-container">
-
-
 
 						</div>
 
@@ -431,7 +441,6 @@ $arr2=$user->Search();
 				</div>
 
 				<!--END COMMENT SECTION -->
-
 
 			</div>
 		</div>

@@ -200,6 +200,38 @@ class User {
 
 	}
 
+
+	public static function Comment($issueKey,$comment){
+
+		//echo $summary.$description.$type.$priority.$page;
+		//$base64_usrpwd = base64_encode('wiljon:weEw4BTpsh6h');
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/issue/'.$issueKey.'/comment');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		if(isset($_COOKIE['JSESSIONID']))
+			$cookiestr='JSESSIONID='.$_COOKIE['JSESSIONID'];
+		else
+			$cookiestr="";
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','cookie:'.$cookiestr));
+		$json_arr['body'] = $comment;
+		$json_string = json_encode ($json_arr);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$json_string);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		echo $result;
+
+		/*$sess_arr = json_decode($result, true);
+		if(isset($sess_arr['errorMessages'][0])) {
+			wp_redirect( "admin.php?page=create_issue" .'&code='.$sess_arr['errorMessages'][0] );
+		}
+		else {
+			wp_redirect( "admin.php?page=create_issue", $status = 302 );
+		}*/
+
+	}
+
+
 	public static function update($issue,$summary,$description,$type,$priority){
 
 		//echo $summary.$description.$type.$priority.$page;

@@ -13,8 +13,23 @@
  */
 ?>
 
+
+
+
+
+
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>LOGIN</h1>
+<h1>LOGIN<?php
+//file_put_contents('../../../Desktop/ngorktest.log', json_encode($_POST));
+//file_put_contents('../../../Desktop/ngorktest.log', json_encode($_POST));
+//echo 'hello world';
+/*$_POST['user_id'];
+$data = json_decode(file_get_contents('php://input'));
+echo $data;
+echo $data['timestamp'];
+echo $data['user_id'];
+echo $_GET['user_id'];*/
+?></h1>
 <?php settings_errors(); ?>
 
 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
