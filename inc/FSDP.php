@@ -172,10 +172,7 @@ class FSDP {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingUpdateIssue' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCommentIssue' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreateRole' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingDeleteRole' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingRenameRole' );
-
-
 
 
 		$this->loader->add_action( 'admin_post_nopriv_login_form', $plugin_admin, 'login' );
@@ -196,9 +193,6 @@ class FSDP {
 		$this->loader->add_action( 'admin_post_nopriv_create_role_form', $plugin_admin, 'createRole' );
 		$this->loader->add_action( 'admin_post_create_role_form', $plugin_admin, 'createRole' );
 
-		$this->loader->add_action( 'admin_post_nopriv_delete_role_form', $plugin_admin, 'deleteRole' );
-		$this->loader->add_action( 'admin_post_delete_role_form', $plugin_admin, 'deleteRole' );
-
 		$this->loader->add_action( 'admin_post_nopriv_rename_role_form', $plugin_admin, 'renameRole' );
 		$this->loader->add_action( 'admin_post_rename_role_form', $plugin_admin, 'renameRole' );
 
@@ -209,8 +203,17 @@ class FSDP {
 		$this->loader->add_action( 'wp_ajax_nopriv_load_issue', $plugin_admin, 'load_issue' );
 		$this->loader->add_action( 'wp_ajax_load_issue', $plugin_admin, 'load_issue' );
 
+		$this->loader->add_action( 'wp_ajax_nopriv_update_caps', $plugin_admin, 'update_caps' );
+		$this->loader->add_action( 'wp_ajax_update_caps', $plugin_admin, 'update_caps' );
+
+		$this->loader->add_action( 'wp_ajax_nopriv_delete_role', $plugin_admin, 'delete_role' );
+		$this->loader->add_action( 'wp_ajax_delete_role', $plugin_admin, 'delete_role' );
+
 		$this->loader->add_action( 'wp_ajax_nopriv_load_role', $plugin_admin, 'load_role' );
 		$this->loader->add_action( 'wp_ajax_load_role', $plugin_admin, 'load_role' );
+
+		$this->loader->add_action( 'wp_ajax_nopriv_load_admin_role', $plugin_admin, 'load_admin_role' );
+		$this->loader->add_action( 'wp_ajax_load_admin_role', $plugin_admin, 'load_admin_role' );
 
 
 
@@ -235,6 +238,7 @@ class FSDP {
 		$plugin_public = new \front\Front( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
 	}
 
 	/**

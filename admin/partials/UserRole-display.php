@@ -20,64 +20,86 @@ namespace admin;
 
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>USER ROLE EDITOR FOURSITES</h1>
+<h1 id="apopo">USER ROLE EDITOR FOURSITES</h1>
 
 <h2>Add Role</h2>
 
-
-<select class="role" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>">
-	<?php
-	echo wp_dropdown_roles();
-	?>
-</select>
-<div class="desc">
-
-</div>
-
-
 <table border="1">
-<tbody>
-<tr>
-<td>Capabilities Categories</td>
-<td>Capabilities</td>
-<td>Actions</td>
-</tr>
-<tr>
-<td rowspan="3">33</td>
-<td>
+	<tbody>
+		<tr>
+			<td><select class="role" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>">
+				<?php
+				echo wp_dropdown_roles();
+				?>
+			</select></td>
+			<td><div align="center" class="ui-widget">
+				<label for="roles">Roles: </label>
+				<input id="roles">
+			</div></td>
+			<td>SOMETHING</td>
+		</tr>
+		<tr>
+			<td>Capabilities Categories</td>
+			<td>Capabilities</td>
+			<td>Actions</td>
+		</tr>
+		<tr>
+			<td rowspan="3">33</td>
+			<td class="fbox">
 
 
-<div class="container">
-  <ul class="tags" id="tags">
-  </ul>
+				<div class="container">
+					<ul class="tags green drop origin" id="tags">
+					</ul>
 
-  <ul class="tags green">
-    <li><a href="#">Design <span>23</span></a></li>
-    <li><a href="#">Illustration <span>42</span></a></li>
-    <li><a href="#">Component <span>108</span></a></li>
-    <li><a href="#">Misc <span>12</span></a></li>
-  </ul>
+					<!-- <ul class="tags green">
+						<li><a href="#">Design <span>23</span></a></li>
+						<li><a href="#">Illustration <span>42</span></a></li>
+						<li><a href="#">Component <span>108</span></a></li>
+						<li><a href="#">Misc <span>12</span></a></li>
+					</ul>
 
-  <ul class="tags blue">
-    <li><a href="#">Infrastructure <span>31</span></a></li>
-    <li><a href="#">Application <span>33</span></a></li>
-    <li><a href="#">Mobile <span>65</span></a></li>
-    <li><a href="#">Desktop <span>160</span></a></li>
-  </ul>
-</div>
+					<ul class="tags blue">
+						<li><a href="#">Infrastructure <span>31</span></a></li>
+						<li><a href="#">Application <span>33</span></a></li>
+						<li><a href="#">Mobile <span>65</span></a></li>
+						<li><a href="#">Desktop <span>160</span></a></li>
+					</ul> -->
+				</div>
 
 
-</td>
-<td rowspan="3">
-<button type="">Create</button><br>
-<button type="">Delete</button><br>
-<button type="">Update</button>
-</td>
-</tr>
-<tr>
-<td rowspan="2">Ungranted Capabilities</td>
-</tr>
-</tbody>
+			</td>
+			<td rowspan="3">
+				<button class='button button-primary update-caps' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Update</button><br>
+				<button type="">Create</button><br>
+				<button class='button button-primary delete-role' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Delete</button><br>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2" class="fbox">
+
+				<div class="container">
+					<ul class="tags drop origin" id="ungrantedtags">
+					</ul>
+
+					<!-- <ul class="tags green">
+						<li><a href="#">Design <span>23</span></a></li>
+						<li><a href="#">Illustration <span>42</span></a></li>
+						<li><a href="#">Component <span>108</span></a></li>
+						<li><a href="#">Misc <span>12</span></a></li>
+					</ul>
+
+					<ul class="tags blue">
+						<li><a href="#">Infrastructure <span>31</span></a></li>
+						<li><a href="#">Application <span>33</span></a></li>
+						<li><a href="#">Mobile <span>65</span></a></li>
+						<li><a href="#">Desktop <span>160</span></a></li>
+					</ul> -->
+
+				</div>
+			</td>
+		</tr>
+	</tbody>
 </table>
 
 
@@ -106,16 +128,6 @@ namespace admin;
 	<?php submit_button( 'Add', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
 </form>
 
-<h1>Delete Role</h1>
-
-<?php settings_errors(); ?>
-
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'user_role_delete' ) ?>
-	<?php do_settings_sections( 'user_role_settings_delete' ); ?>
-	<?php submit_button( 'Delete', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-</form>
-
 <h1>Rename Role</h1>
 
 <?php settings_errors(); ?>
@@ -131,5 +143,5 @@ namespace admin;
 		$( ".role" ).change(function() {
   $(".desc").html($(this).val());
 });
-	})( jQuery );*/
+})( jQuery );*/
 </script>

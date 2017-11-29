@@ -230,21 +230,6 @@ class AdminCallbacks
 		<input type="hidden" name="action" value="create_role_form">';
 	}
 
-	public function deleteRoleForm()
-	{
-		echo '<label>
-		<select name="id">';
-		foreach (get_editable_roles() as $role_name => $role_info)
-		{
-			if (($role_name != 'administrator') && ($role_name != 'author') && ($role_name != 'contributor') && ($role_name != 'editor') && ($role_name != 'subscriber'))
-			{
-				echo "<option value=". $role_name ." >$role_name</option>";
-			}
-		}
-		echo '</select> Choose a Role to Delete</label>
-		<input type="hidden" name="action" value="delete_role_form">';
-	}
-
 	public function renameRoleForm()
 	{
 		echo '<label>

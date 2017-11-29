@@ -55,10 +55,29 @@ class Role
 
 	public function ViewRole()
 	{
-		 $role = get_role($this->id);
-		 return json_encode($role, true);
-		//return 'hello Lame test';
+		$role = get_role($this->id);
+		 //$roleadmin= getrole('administrator');
+		 //$obj_merged = (object) array_merge((array) $roleadmin, (array) $role);
+		return json_encode($role, true);
+	}
 
+	public function AddCap()
+	{
+		$role = get_role($this->id);
+		foreach( $this->capabilities as &$cap )
+		{
+			$role->add_cap( $cap );
+		}
+
+	}
+
+	public function RemoveCap()
+	{
+		$role = get_role($this->id);
+		foreach( $this->capabilities as &$cap )
+		{
+			$role->remove_cap( $cap );
+		}
 	}
 
 	public function RenameRole(){
