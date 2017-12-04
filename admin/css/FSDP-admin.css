@@ -307,10 +307,10 @@
 
 
 /* The Modal (background) */
-.modalUpdate, .modalView{
+.modalUpdate, .modalView, .modalrole, .modalrename{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 200; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -332,15 +332,16 @@
 }
 
 /* The Close Button */
-.close,.close2 {
+.close,.close2,.close3 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,.close2:hover,
-.close:focus,.close2:focus {
+.close:hover,.close:focus,
+.close2:hover,.close2:focus,
+.close3:hover,.close3:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -695,3 +696,75 @@
   background-image: linear-gradient(to bottom, #6aaeda, #4298d0);
 }
 
+//Categories//
+
+.homes-list {
+  margin: 0 auto;
+  list-style-type: none;
+  width: 160px;
+  text-align: center;
+}
+
+.homes-list li {
+  padding: 10px;
+  font-family: helvetica;
+  color: #fff;
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 18px;
+  margin: 2px;
+  padding: 10px 15px;
+  float: left;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.homes-list li:after {
+  overflow: hidden;
+  content: "20 homes";
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 0;
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  /**/
+}
+
+.homes-list li:hover {
+  z-index: 2;
+  opacity: 1;
+}
+.homes-list .single-storey {
+  background: #F6672E;
+}
+
+.homes-list .double-storey {
+  background-color: #009BD4;
+}
+
+.homes-list .house-and-land {
+  background-color: #9FC53A;
+}
+
+.homes-list .develop-subdivide {
+  background-color: #FFB200;
+}
+
+.homes-list .land-estate {
+  background-color: #8F5A9F;
+}
+
+.homes-list .apartments {
+  background-color: #4EC9BE;
+}
+
+.homes-list .custom-built {
+  background-color: #B7AEAC;
+}
+
+.homes-list .luxury-homes {
+  background-color: #3A537C;
+}

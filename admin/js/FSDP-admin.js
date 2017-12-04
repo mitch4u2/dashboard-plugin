@@ -98,27 +98,35 @@ jQuery(document).ready( function ($)
 	{
 		var id = $( ".role" ).val();
 		var ajaxurl = $(this).data('url');
-
-		console.log(id+'==>'+ajaxurl);
-
-		$.ajax(
+		if (id === 'administrator')
 		{
-			url : ajaxurl,
-			type : 'post',
-			data :
+			return window.confirm("you can't delete an administrator");
+
+		}else
+		{
+			var x =  window.confirm("Are you sure?");
+			if (x)
 			{
-				id : id,
-				action : 'delete_role'
-			},
-			error : function ( response )
-			{
-				console.log(response);
-			},
-			success : function ( response )
-			{
-				location.reload(true);
+				$.ajax(
+				{
+					url : ajaxurl,
+					type : 'post',
+					data :
+					{
+						id : id,
+						action : 'delete_role'
+					},
+					error : function ( response )
+					{
+						console.log(response);
+					},
+					success : function ( response )
+					{
+						location.reload(true);
+					}
+				});
 			}
-		});
+		}
 	});
 });
 
@@ -136,11 +144,11 @@ jQuery(document).ready( function ($)
 jQuery(document).ready( function ($)
 {
 
-$("button[type='delete']").click(function(){
-    if (!confirm("Do you want to delete")){
-      return false;
-    }
-  });
+	$("button[type='delete']").click(function(){
+		if (!confirm("Do you want to delete")){
+			return false;
+		}
+	});
 });
 
 
@@ -362,9 +370,11 @@ jQuery(document).ready( function ($)
 					}
 				});
 
-				$("#ungrantedtags").sortable({
+				$("#ungrantedtags").sortable(
+				{
 					connectWith: "#tags",
-					update: function(event, ui){
+					update: function(event, ui)
+					{
 						var postdata = $(this).sortable('serialize');
 					}
 				});
@@ -384,10 +394,16 @@ document.getElementsByTagName("head")[0].appendChild(script);
 // Get the modal
 var modal = document.getElementsByClassName("modalUpdate")[0];
 var modal2 = document.getElementsByClassName("modalView")[0];
+var modal3 = document.getElementsByClassName("modalrole")[0];
+var modal4 = document.getElementsByClassName("modalrename")[0];
 
 // Get the button that opens the modal
 var btn = document.getElementsByClassName("update")[0];
 var btn2 = document.getElementsByClassName("view")[0];
+var btn3 = document.getElementsByClassName("create")[0];
+var btn4 = document.getElementsByClassName("rename")[0];
+
+
 
 // When the user clicks the button, open the modal
 jQuery(".update").click(function()
@@ -397,6 +413,14 @@ jQuery(".update").click(function()
 jQuery(".view").click(function()
 {
 	modal2.style.display = "block";
+});
+jQuery(".create").click(function()
+{
+	modal3.style.display = "block";
+});
+jQuery(".rename").click(function()
+{
+	modal4.style.display = "block";
 });
 
 // When the user clicks on <span> (x), close the modal
@@ -408,10 +432,21 @@ jQuery(".close2").click(function()
 {
 	modal2.style.display = "none";
 });
+jQuery(".close3").click(function()
+{
+	modal3.style.display = "none";
+	modal4.style.display = "none";
+});
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event)
 {
-	if ((event.target == modal) || (event.target == modal2)) {
+	if ( (event.target == modal3) || (event.target == modal4) )
+	{
+		modal3.style.display = "none";
+		modal4.style.display = "none";
+	}
+	if ( (event.target == modal) || (event.target == modal2) )
+	{
 		modal.style.display = "none";
 		modal2.style.display = "none";
 	}

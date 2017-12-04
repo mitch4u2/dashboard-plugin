@@ -16,9 +16,6 @@ namespace admin;
 
 
 
-
-
-
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <h1 id="apopo">USER ROLE EDITOR FOURSITES</h1>
 
@@ -44,7 +41,20 @@ namespace admin;
 			<td>Actions</td>
 		</tr>
 		<tr>
-			<td rowspan="3">33</td>
+			<td rowspan="3">
+
+				<ul class="homes-list">
+					<li class="single-storey">General</li>
+					<li class="double-storey">Themes</li>
+					<li class="house-and-land">Posts</li>
+					<li class="develop-subdivide">Pages</li>
+					<li class="land-estate">Plugins</li>
+					<li class="apartments">Users</li>
+					<li class="custom-built">Deprecated</li>
+					<li class="luxury-homes">Custom</li>
+				</ul>
+
+			</td>
 			<td class="fbox">
 
 
@@ -70,9 +80,10 @@ namespace admin;
 
 			</td>
 			<td rowspan="3">
-				<button class='button button-primary update-caps' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Update</button><br>
-				<button type="">Create</button><br>
-				<button class='button button-primary delete-role' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Delete</button><br>
+				<button class='button button-primary update-caps' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Update</button><br><br>
+				<button class='button button-primary create' >Create</button><br><br>
+				<button class='button button-primary delete-role' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Delete</button><br><br>
+				<button class='button button-primary rename-role' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" >Rename</button><br><br>
 			</td>
 		</tr>
 		<tr>
@@ -118,25 +129,42 @@ namespace admin;
 </dl>
 
 
-<h1>Create Role</h1>
+<div id="myModal" class="modalrename" >
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close3">&times;</span>
+		<h1 class='modaltitle'>Rename Role</h1>
 
-<?php settings_errors(); ?>
+		<?php settings_errors(); ?>
+		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+			<?php settings_fields( 'user_role_rename' ) ?>
+			<?php do_settings_sections( 'user_role_settings_rename' ); ?>
+			<?php submit_button( 'Rename', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+		</form>
+	</div>
+</div>
 
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'user_role_create' ) ?>
-	<?php do_settings_sections( 'user_role_settings_create' ); ?>
-	<?php submit_button( 'Add', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-</form>
 
-<h1>Rename Role</h1>
 
-<?php settings_errors(); ?>
+<div id="myModal" class="modalrole" >
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close3">&times;</span>
+		<h1 class='modaltitle'>Create Role</h1>
 
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'user_role_rename' ) ?>
-	<?php do_settings_sections( 'user_role_settings_rename' ); ?>
-	<?php submit_button( 'Rename', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-</form>
+		<?php settings_errors(); ?>
+		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+			<?php settings_fields( 'user_role_create' ) ?>
+			<?php do_settings_sections( 'user_role_settings_create' ); ?>
+			<?php submit_button( 'Add', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+		</form>
+	</div>
+</div>
+
+
+
+
+
 
 <script>
 /*	(function( $ ) {

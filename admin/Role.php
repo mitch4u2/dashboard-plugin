@@ -68,7 +68,6 @@ class Role
 		{
 			$role->add_cap( $cap );
 		}
-
 	}
 
 	public function RemoveCap()

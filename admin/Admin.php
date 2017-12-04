@@ -112,8 +112,6 @@ class Admin{
 		wp_enqueue_script("jquery-ui-droppable");
 		wp_enqueue_script("jquery-ui-sortable");
 		wp_enqueue_script("jquery-ui-autocomplete");
-
-
 		//wp_enqueue_script($this->plugin_name,'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js', array('jquery'), '1.8.6');
 	}
 
@@ -216,13 +214,13 @@ class Admin{
 
 		if ( (!empty($id)) && (!empty($grantedarr)) )
 		{
-		$role = new Role($id,'',$grantedarr);
-		echo $role->AddCap();
+			$role = new Role($id,'',$grantedarr);
+			echo $role->AddCap();
 		}
 		if ( (!empty($id)) && (!empty($ungrantedarr)) )
 		{
-		$role = new Role($id,'',$ungrantedarr);
-		echo $role->RemoveCap();
+			$role = new Role($id,'',$ungrantedarr);
+			echo $role->RemoveCap();
 		}
 		wp_die();
 	}
@@ -338,8 +336,10 @@ class Admin{
 	function createRole()
 	{
 		status_header(200);
-		$role = new Role($_POST['id'],$_POST['name'],array());
+		$id = $_POST['id'];
+		$role = new Role($id,$_POST['name'],array());
 		$role->CreateRole();
+		wp_redirect( "admin.php?page=user_role" .'&role='.$id );
 	}
 
 	function renameRole()

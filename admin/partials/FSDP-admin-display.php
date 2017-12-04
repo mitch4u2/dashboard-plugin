@@ -179,8 +179,6 @@ $arr2=$user->Search();
 <script>
 
 	(function( $ ) {
-
-
 		$(document).ready(function(){
 			$(".update").click(function(){
 				var $row = $(this).closest("tr");    // Find the row
@@ -380,7 +378,6 @@ $arr2=$user->Search();
 					<div class="status">
 						<h4 style='background-color: #4a6785;color:white;padding: 3px;border-radius: 5px;'> TO DO </h4>
 					</div>
-
 				</li>
 				<li id="inprogress" class="li">
 					<div class="timestamp">
@@ -402,45 +399,30 @@ $arr2=$user->Search();
 						</li>
 					</ul>
 
-
-
-
-
 					<!-- COMMENT SECTION -->
-
 					<div class="comments">
 						<div class="comment-wrap">
 							<div class="photo">
 								<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
 							</div>
-
 							<!-- <div class="comment-block">
 								<form action="">
 									<textarea name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
 								</form>
 							</div> -->
 							<div class="comment-block">
-							<?php settings_errors(); ?>
-							<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-								<?php settings_fields( 'jira_issue_comment' ); ?>
-								<?php do_settings_sections( 'jira_settings_comment' ); ?>
-								<?php submit_button( 'Comment', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-							</form>
+								<?php settings_errors(); ?>
+								<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+									<?php settings_fields( 'jira_issue_comment' ); ?>
+									<?php do_settings_sections( 'jira_settings_comment' ); ?>
+									<?php submit_button( 'Comment', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+								</form>
+							</div>
 						</div>
-
-						</div>
-
-
-
 						<div class="comment-container">
-
 						</div>
-
 					</div>
-
 				</div>
-
 				<!--END COMMENT SECTION -->
-
 			</div>
 		</div>
