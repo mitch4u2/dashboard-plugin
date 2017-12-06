@@ -15,37 +15,44 @@
 
 
 
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#tab-1">Manage Settings</a></li>
+	<li class=""><a href="#tab-2">Updates</a></li>
+	<li class=""><a href="#tab-3">About</a></li>
+</ul>
+
+<div class="tab-content">
+	<div id="tab-1" class="tab-pane active">
+
+		<ul class="nav-form">
+		<li>
+		<?php settings_errors(); ?>
+		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+			<?php settings_fields( 'jira_user_login' ); ?>
+			<?php do_settings_sections( 'jira_settings_login' ); ?><br>
+			<?php submit_button( 'Login', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ); ?>
+		</form>
+		</li>
+		<li>
+		<?php settings_errors(); ?>
+		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+			<?php settings_fields( 'jira_user_signin' ); ?>
+			<?php do_settings_sections( 'jira_settings_signin' ); ?>
+			<?php submit_button( 'Signin', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ); ?>
+		</form>
+		</li>
+		</ul>
+
+	</div>
+
+	<div id="tab-2" class="tab-pane"><h3>Updates</h3></div>
+	<div id="tab-3" class="tab-pane"><h3>About</h3></div>
+</div>
 
 
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>LOGIN<?php
-//file_put_contents('../../../Desktop/ngorktest.log', json_encode($_POST));
-//file_put_contents('../../../Desktop/ngorktest.log', json_encode($_POST));
-//echo 'hello world';
-/*$_POST['user_id'];
-$data = json_decode(file_get_contents('php://input'));
-echo $data;
-echo $data['timestamp'];
-echo $data['user_id'];
-echo $_GET['user_id'];*/
-?></h1>
-<?php settings_errors(); ?>
-
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'jira_user_login' ) ?>
-	<?php do_settings_sections( 'jira_settings_login' ); ?>
-	<?php submit_button( 'Login', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-
-</form>
 
 
-<h1>SIGNIN</h1>
 
-<?php settings_errors(); ?>
 
-<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
-	<?php settings_fields( 'jira_user_signin' ) ?>
-	<?php do_settings_sections( 'jira_settings_signin' ); ?>
-	<?php submit_button( 'Signin', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
-</form>
+

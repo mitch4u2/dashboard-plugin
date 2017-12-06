@@ -44,14 +44,13 @@ namespace admin;
 			<td rowspan="3">
 
 				<ul class="homes-list">
-					<li class="single-storey">General</li>
-					<li class="double-storey">Themes</li>
-					<li class="house-and-land">Posts</li>
-					<li class="develop-subdivide">Pages</li>
-					<li class="land-estate">Plugins</li>
-					<li class="apartments">Users</li>
-					<li class="custom-built">Deprecated</li>
-					<li class="luxury-homes">Custom</li>
+					<li data-cat='General' class="single-storey">General <span>12/<b></b> capabilities</span></li>
+					<li data-cat='Themes' class="double-storey">Themes <span>6/<b></b> capabilities</span></li>
+					<li data-cat='Posts' class="house-and-land">Posts <span>13/<b></b> capabilities</span></li>
+					<li data-cat='Pages' class="develop-subdivide">Pages <span>11/<b></b> capabilities</span></li>
+					<li data-cat='Plugins' class="land-estate">Plugins <span>5/<b></b> capabilities</span></li>
+					<li data-cat='Users' class="apartments">Users <span>6/<b></b> capabilities</span></li>
+					<li data-cat='Custom' class="luxury-homes">Custom <span>8/<b></b> capabilities</span></li>
 				</ul>
 
 			</td>
@@ -68,12 +67,8 @@ namespace admin;
 						<li><a href="#">Component <span>108</span></a></li>
 						<li><a href="#">Misc <span>12</span></a></li>
 					</ul>
-
-					<ul class="tags blue">
-						<li><a href="#">Infrastructure <span>31</span></a></li>
-						<li><a href="#">Application <span>33</span></a></li>
-						<li><a href="#">Mobile <span>65</span></a></li>
-						<li><a href="#">Desktop <span>160</span></a></li>
+						-->
+					<!-- <ul class="tags blue" id="deprecated">
 					</ul> -->
 				</div>
 

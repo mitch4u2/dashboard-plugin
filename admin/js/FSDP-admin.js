@@ -1,3 +1,25 @@
+/* Switch tabs for Admin Settings */
+/* -----------------------------------------------------*/
+window.addEventListener("load", function()
+{
+	var tabs = document.querySelectorAll("ul.nav-tabs > li");
+	for (i = 0; i < tabs.length; i++)
+	{
+		tabs[i].addEventListener("click", switchTab);
+	}
+	function switchTab(event)
+	{
+		event.preventDefault();
+		document.querySelector("ul.nav-tabs li.active").classList.remove("active");
+		document.querySelector(".tab-pane.active").classList.remove("active");
+		var clickedTab = event.currentTarget;
+		var anchor = event.target;
+		var activePaneID = anchor.getAttribute("href");
+		clickedTab.classList.add("active");
+		document.querySelector(activePaneID).classList.add("active");
+	}
+});
+
 /* Ajax Functions Just for Testing Delete this when done */
 /* -----------------------------------------------------*/
 jQuery(document).ready( function ($)
@@ -259,6 +281,22 @@ jQuery(document).ready( function ($)
 var loaded = false;
 var capsadmin = new Array();
 var capsadminuni = new Array();
+var general= ['edit_dashboard','export','import','manage_categories','manage_links','manage_options','moderate_comments','read','unfiltered_html','unfiltered_upload','update_core','upload_files'];
+var themes =['delete_themes','edit_theme_options','edit_themes','install_themes','switch_themes','update_themes'];
+var posts=['create_posts','delete_others_posts','delete_posts','delete_private_posts','delete_published_posts','edit_others_posts','edit_posts','edit_private_posts','edit_published_posts','manage_categories','moderate_comments','publish_posts','read_private_posts'];
+var pages=['create_pages','delete_others_pages','delete_pages','delete_private_pages','delete_published_pages','edit_others_pages','edit_pages','edit_private_pages','edit_published_pages','publish_pages','read_private_pages'];
+var plugins=['activate_plugins','delete_plugins','edit_plugins','install_plugins','update_plugins'];
+var users=['create_users','delete_users','edit_users','list_users','promote_users','remove_users'];
+var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
+var deprecated = ['edit_files','level_0','level_1','level_2','level_3','level_4','level_5','level_6','level_7','level_8','level_9','level_10'];
+var numgeneral=0;
+var numthemes =0;
+var numposts=0;
+var numpages=0;
+var numplugins=0;
+var numusers=0;
+var numcustom =0;
+
 jQuery(document).ready( function ($)
 {
 	$( ".role" ).val('administrator');
@@ -282,9 +320,51 @@ jQuery(document).ready( function ($)
 			capsadmin = arradmin['capabilities'];
 			$.each(capsadmin,function(key,value)
 			{
-				$('ul#tags').append('<li id="role_'+key+'"><a href="#">'+key+'<span></span></a></li>');
-				capsadminuni.push(key);
+				if ($.inArray(key,deprecated) > -1 ) {
+
+					$('ul#tags').append('<li  id="role_'+key+'"><a href="#">'+key+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+					capsadminuni.push(key);
+				}else{
+					$('ul#tags').append('<li id="role_'+key+'"><a href="#">'+key+'<span>G</span></a></li>');
+					capsadminuni.push(key);
+				}
 			});
+
+			$.each(capsadminuni,function(key,value)
+			{
+				if ($.inArray(value,general) > -1 ) {
+					numgeneral++;
+				}
+				if ($.inArray(value,themes) > -1 ) {
+					numthemes++;
+				}
+				if ($.inArray(value,posts) > -1 ) {
+					numposts++;
+				}
+				if ($.inArray(value,pages) > -1 ) {
+					numpages++;
+				}
+				if ($.inArray(value,plugins) > -1 ) {
+					numplugins++;
+				}
+				if ($.inArray(value,users) > -1 ) {
+					numusers++;
+				}
+				if ($.inArray(value,custom) > -1 ) {
+					numcustom++;
+				}
+			});
+
+			//console.log(numgeneral);
+			$(".single-storey span b").html(numgeneral);
+			$(".double-storey span b").html(numthemes);
+			$(".house-and-land span b").html(numposts);
+			$(".develop-subdivide span b").html(numpages);
+			$(".land-estate span b").html(numplugins);
+			$(".apartments span b").html(numusers);
+			$(".luxury-homes span b").html(numcustom);
+
+
 			loaded = true;
 			$( function()
 			{
@@ -297,7 +377,6 @@ jQuery(document).ready( function ($)
 					}
 				});
 			} );
-			//$('ul#tags li a').removeAttr('style');
 			$("#tags").sortable(
 			{
 				connectWith: "#ungrantedtags",
@@ -314,6 +393,10 @@ jQuery(document).ready( function ($)
 					var postdata = $(this).sortable('serialize');
 				}
 			});
+
+
+
+
 		}
 	});
 
@@ -347,8 +430,15 @@ jQuery(document).ready( function ($)
 				{
 					if (key!='null')
 					{
-						$('ul#tags').append('<li id="role_'+key+'"><a href="#">'+key+'<span></span></a></li>');
-						capsuni.push(key);
+						if ($.inArray(key,deprecated) > -1 )
+						{
+							$('ul#tags').append('<li  id="role_'+key+'"><a href="#">'+key+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+							capsuni.push(key);
+						}else
+						{
+							$('ul#tags').append('<li id="role_'+key+'"><a href="#">'+key+'<span>G</span></a></li>');
+							capsuni.push(key);
+						}
 					}
 				});
 
@@ -356,30 +446,72 @@ jQuery(document).ready( function ($)
 				{
 					if (capsuni.indexOf(capsadminuni[i]) === -1)
 					{
-						allcaps.push(capsadminuni[i]);
-						$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a href="#">'+capsadminuni[i]+'<span></span></a></li>');
+
+						if ($.inArray(capsadminuni[i],deprecated) > -1 )
+						{
+							allcaps.push(capsadminuni[i]);
+							$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a href="#">'+capsadminuni[i]+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+						}else{
+							allcaps.push(capsadminuni[i]);
+							$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a href="#">'+capsadminuni[i]+'<span>U</span></a></li>');
+						}
 					}
 				}
-
-				$("#tags").sortable(
+				numgeneral=numthemes=numposts=numpages=numplugins=numusers=numcustom=0;
+				$.each(capsuni,function(key,value)
 				{
-					connectWith: "#ungrantedtags",
-					update: function(event, ui)
-					{
-						var postdata = $(this).sortable('serialize');
+					if ($.inArray(value,general) > -1 ) {
+						numgeneral++;
+					}
+					if ($.inArray(value,themes) > -1 ) {
+						numthemes++;
+					}
+					if ($.inArray(value,posts) > -1 ) {
+						numposts++;
+					}
+					if ($.inArray(value,pages) > -1 ) {
+						numpages++;
+					}
+					if ($.inArray(value,plugins) > -1 ) {
+						numplugins++;
+					}
+					if ($.inArray(value,users) > -1 ) {
+						numusers++;
+					}
+					if ($.inArray(value,custom) > -1 ) {
+						numcustom++;
 					}
 				});
 
-				$("#ungrantedtags").sortable(
+			//console.log(numgeneral);
+			$(".single-storey span b").html(numgeneral);
+			$(".double-storey span b").html(numthemes);
+			$(".house-and-land span b").html(numposts);
+			$(".develop-subdivide span b").html(numpages);
+			$(".land-estate span b").html(numplugins);
+			$(".apartments span b").html(numusers);
+			$(".luxury-homes span b").html(numcustom);
+
+
+			$("#tags").sortable(
+			{
+				connectWith: "#ungrantedtags",
+				update: function(event, ui)
 				{
-					connectWith: "#tags",
-					update: function(event, ui)
-					{
-						var postdata = $(this).sortable('serialize');
-					}
-				});
-			}
-		});
+					var postdata = $(this).sortable('serialize');
+				}
+			});
+
+			$("#ungrantedtags").sortable(
+			{
+				connectWith: "#tags",
+				update: function(event, ui)
+				{
+					var postdata = $(this).sortable('serialize');
+				}
+			});
+		}
+	});
 	});
 });
 
@@ -451,3 +583,76 @@ window.onclick = function(event)
 		modal2.style.display = "none";
 	}
 }
+
+
+/* JS Functions for role  categories  */
+/* -----------------------------------*/
+
+jQuery(document).ready( function ($)
+{
+	$(document).on('click','.homes-list li', function ()
+	{
+
+		var catarr = new Array();
+		var cat = $(this).data('cat');
+		var color = '';
+		var general= ['edit_dashboard','export','import','manage_categories','manage_links','manage_options','moderate_comments','read','unfiltered_html','unfiltered_upload','update_core','upload_files'];
+		var themes =['delete_themes','edit_theme_options','edit_themes','install_themes','switch_themes','update_themes'];
+		var posts=['create_posts','delete_others_posts','delete_posts','delete_private_posts','delete_published_posts','edit_others_posts','edit_posts','edit_private_posts','edit_published_posts','manage_categories','moderate_comments','publish_posts','read_private_posts'];
+		var pages=['create_pages','delete_others_pages','delete_pages','delete_private_pages','delete_published_pages','edit_others_pages','edit_pages','edit_private_pages','edit_published_pages','publish_pages','read_private_pages'];
+		var plugins=['activate_plugins','delete_plugins','edit_plugins','install_plugins','update_plugins'];
+		var users=['create_users','delete_users','edit_users','list_users','promote_users','remove_users'];
+		var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
+
+
+		$(".homes-list li").css('width','120px');
+		$(this).css('width','130px');
+
+		switch(cat) {
+			case 'General':
+			catarr = general;
+			color='#f67b4f';
+			break;
+			case 'Themes':
+			catarr = themes;
+			color='#32a8d9';
+			break;
+			case 'Posts':
+			catarr = posts;
+			color='#ff3232';
+			break;
+			case 'Pages':
+			catarr = pages;
+			color='#fdbc3b';
+			break;
+			case 'Plugins':
+			catarr = plugins;
+			color='#551A8B';
+			break;
+			case 'Users':
+			catarr = users;
+			color='#67d0c7';
+			break;
+			case 'Custom':
+			catarr = custom;
+			color='#566b8d';
+			break;
+			default:
+			catarr = '';
+		}
+
+		$( "ul#tags li a, ul#ungrantedtags li a").css("font-weight", "");
+		$( "ul#tags li span, ul#ungrantedtags li span ").css("background","");
+		$( "ul#tags li span, ul#ungrantedtags li span").css("border-color","");
+		$.each(catarr,function(key,value)
+		{
+			if (key!='null')
+			{
+				$( "#role_"+value+" a").css("font-weight", "bold");
+				$( "#role_"+value+" span").css("background", color);
+				$( "#role_"+value+" span").css("border-color", color+' '+color+' '+color);
+			}
+		});
+
+	});
+});

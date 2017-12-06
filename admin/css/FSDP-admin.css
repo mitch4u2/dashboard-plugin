@@ -5,25 +5,25 @@
 
 
 
-.tabjira table{
-	background-color: grey;
-}
+ .tabjira table{
+   background-color: grey;
+ }
 
 
 
 
-#toplevel_page_jira-tickets :hover{
-	background: orange;
-	font-weight: bolder;
-	color: black;
-}
+ #toplevel_page_jira-tickets :hover{
+   background: orange;
+   font-weight: bolder;
+   color: black;
+ }
 
-#med {
-	color:red;
-}
-.jira-list table, .jira-list th, .jira-list td {
-    border: 1px solid black;
-    border-collapse: collapse;
+ #med {
+   color:red;
+ }
+ .jira-list table, .jira-list th, .jira-list td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 .jira-list table tr:nth-of-type(2n) {background-color: #DCDCDC;}
 .jira-list th {background-color:#018DB1;font-weight:bold;color:#fff;}
@@ -36,9 +36,9 @@
 	font-family: 'stroke7pixeden';
 	src:url('../fonts/Pe-icon-7-stroke.eot?u58ytb');
 	src:url('../fonts/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
-		url('../fonts/Pe-icon-7-stroke.woff?u58ytb') format('woff'),
-		url('../fonts/Pe-icon-7-stroke.ttf?u58ytb') format('truetype'),
-		url('../fonts/Pe-icon-7-stroke.svg?u58ytb#Pe-icon-7-stroke') format('svg');
+  url('../fonts/Pe-icon-7-stroke.woff?u58ytb') format('woff'),
+  url('../fonts/Pe-icon-7-stroke.ttf?u58ytb') format('truetype'),
+  url('../fonts/Pe-icon-7-stroke.svg?u58ytb#Pe-icon-7-stroke') format('svg');
 }
 
 
@@ -308,68 +308,68 @@
 
 /* The Modal (background) */
 .modalUpdate, .modalView, .modalrole, .modalrename{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 200; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 200; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-    background-color: #f0f2fa;
-    margin: auto;
-    margin-left: 20%;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 65%;
+  background-color: #f0f2fa;
+  margin: auto;
+  margin-left: 20%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 65%;
 }
 
 /* The Close Button */
 .close,.close2,.close3 {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,.close:focus,
 .close2:hover,.close2:focus,
 .close3:hover,.close3:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 //tooltip
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
 
 //PROGRESS lINE//
@@ -377,8 +377,8 @@
 	width: 100px;
 	margin-left: 500px;
 }
- .timeline {
- 	position: relative;
+.timeline {
+  position: relative;
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -440,13 +440,13 @@
     display: block;
   }
 
- .timeline .li {
+  .timeline .li {
     transition: all 200ms ease-in;
     display: flex;
     width: inherit;
   }
 
- .timeline .timestamp {
+  .timeline .timestamp {
     width: 100px;
   }
 }
@@ -585,20 +585,6 @@
   margin-bottom: 7px;
 }
 
-.tags li:after {
-  content: '';
-  z-index: 2;
-  position: absolute;
-  top: 10px;
-  right: -2px;
-  width: 5px;
-  height: 6px;
-  opacity: .95;
-  background: #eb6b22;
-  border-radius: 3px 0 0 3px;
-  -webkit-box-shadow: inset 1px 0 #99400e;
-  box-shadow: inset 1px 0 #99400e;
-}
 
 .tags a, .tags span {
   display: block;
@@ -666,12 +652,6 @@
   transition-property: padding, max-width;
 }
 
-.green li:after {
-  background: #65bb34;
-  -webkit-box-shadow: inset 1px 0 #3a6b1e;
-  box-shadow: inset 1px 0 #3a6b1e;
-}
-
 .green span {
   background: #65bb34;
   border-color: #549b2b #4f9329 #4b8b27;
@@ -679,12 +659,6 @@
   background-image: -moz-linear-gradient(top, #71ca3f, #5aa72e);
   background-image: -o-linear-gradient(top, #71ca3f, #5aa72e);
   background-image: linear-gradient(to bottom, #71ca3f, #5aa72e);
-}
-
-.blue li:after {
-  background: #56a3d5;
-  -webkit-box-shadow: inset 1px 0 #276f9e;
-  box-shadow: inset 1px 0 #276f9e;
 }
 
 .blue span {
@@ -699,7 +673,6 @@
 //Categories//
 
 .homes-list {
-  margin: 0 auto;
   list-style-type: none;
   width: 160px;
   text-align: center;
@@ -713,24 +686,24 @@
   font-size: 18px;
   line-height: 18px;
   margin: 2px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   float: left;
   cursor: pointer;
   opacity: 0.85;
+  width: 120px;
 }
 
-.homes-list li:after {
+.homes-list span {
   overflow: hidden;
-  content: "20 homes";
   display: inline-block;
   vertical-align: middle;
   font-size: 14px;
-  font-weight: bold;
+  font-weight:900;
   margin-left: 0;
-  width: 0;
-  opacity: 0;
   white-space: nowrap;
-  /**/
+  border-radius: 4px;
+  float: left;
+  padding: 3px;
 }
 
 .homes-list li:hover {
@@ -746,7 +719,7 @@
 }
 
 .homes-list .house-and-land {
-  background-color: #9FC53A;
+  background-color: #ff3232;
 }
 
 .homes-list .develop-subdivide {
@@ -768,3 +741,70 @@
 .homes-list .luxury-homes {
   background-color: #3A537C;
 }
+
+
+
+//SETTING TABS
+
+
+.nav-tabs, .nav-form {
+  float: left;
+  width: 100%;
+  margin:0;
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-form > li {
+ float: left;
+ margin-bottom: -1px;
+ border-color: #eee #eee #ddd;
+ border: 1px solid #ddd;
+ background-color: #eee;
+ height: 300px;
+ margin: 40px;
+ padding:30px;
+
+}
+.nav-tabs > li  {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.5;
+  padding:10px;
+  border:1px solid transparent;
+  border-radius: 4px;
+  float: left;
+  text-decoration: none;
+}
+
+.nav-tabs > li > a:hover{
+  border-color: #eee #eee #ddd;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border-color: #ddd;
+  border-bottom-color: transparent;
+}
+
+.tab-content > .tab-pane {
+  float:left;
+  width: 100%;
+  display: none;
+}
+
+.tab-content > .tab-pane.active{
+  display: block;
+  padding:10px;
+  background-color: #fff;
+  box-shadow: 0 5px 4px -2px rgba(0,0,0,0.15);
+}
+
