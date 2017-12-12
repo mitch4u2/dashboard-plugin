@@ -9,19 +9,26 @@
    background-color: grey;
  }
 
-
-
-
- #toplevel_page_jira-tickets :hover{
-   background: orange;
-   font-weight: bolder;
-   color: black;
+ .my-toolbar-page :before {
+   display: block;
+   content: url("data:image/svg+xml;charset=UTF-8,<svg id='Laag_1' data-name='Laag 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 98.38 131.88'><defs><style>.cls-1{fill:#fff;}</style></defs><title>jira</title><path class='cls-1' d='M18.2,37.51s-.94,19.88,28.54,48.83S79.57,127,78,135.16H99.4S101.35,101.57,68.12,78c0,0-22.88-20.35-26.61-36.5,0,0-11.26,0-19.1-6.31C22.42,35.18,18.19,32.64,18.2,37.51Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M63.83,83.43a78.89,78.89,0,0,1,14.6,13.32c2.84-3,6-6.29,9.6-9.79C117.51,58,116.58,37.51,116.58,37.51c0-4.86-4.22-2.17-4.22-2.17-7.84,6.3-19.1,6.46-19.1,6.46C89.53,57.95,66.65,78.61,66.65,78.61c-1.55,1.1-3,2.23-4.4,3.37C63.25,82.91,63.83,83.43,63.83,83.43Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M63.55,114.83A205.24,205.24,0,0,0,48,97.3C34.27,117,35.37,136.41,35.37,136.41H56.81C55.86,131.41,56.64,125.08,63.55,114.83Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M56.59,43.28H77.83s2.78-.39,2.1,3.28C79,51.8,67.5,62.39,67.5,62.39s-8.38-7.79-12.12-15.1C55.38,47.29,53.87,43.28,56.59,43.28Z' transform='translate(-18.19 -4.53)'/><circle class='cls-1' cx='77.18' cy='16.79' r='9.28'/><circle class='cls-1' cx='22.5' cy='16.79' r='9.28'/><circle class='cls-1' cx='50.38' cy='9.28' r='9.28'/></svg>");
+   background-size: 28px 28px;
+   height: 10px;
+   width: 13px;
+   margin-bottom: 15px;
  }
 
- #med {
-   color:red;
+ .my-toolbar-page :hover::before {
+   content: url("data:image/svg+xml;charset=UTF-8,<svg id='Laag_1' data-name='Laag 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 98.38 131.88'><defs><style>.cls-1{fill:orange;}</style></defs><title>jira</title><path class='cls-1' d='M18.2,37.51s-.94,19.88,28.54,48.83S79.57,127,78,135.16H99.4S101.35,101.57,68.12,78c0,0-22.88-20.35-26.61-36.5,0,0-11.26,0-19.1-6.31C22.42,35.18,18.19,32.64,18.2,37.51Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M63.83,83.43a78.89,78.89,0,0,1,14.6,13.32c2.84-3,6-6.29,9.6-9.79C117.51,58,116.58,37.51,116.58,37.51c0-4.86-4.22-2.17-4.22-2.17-7.84,6.3-19.1,6.46-19.1,6.46C89.53,57.95,66.65,78.61,66.65,78.61c-1.55,1.1-3,2.23-4.4,3.37C63.25,82.91,63.83,83.43,63.83,83.43Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M63.55,114.83A205.24,205.24,0,0,0,48,97.3C34.27,117,35.37,136.41,35.37,136.41H56.81C55.86,131.41,56.64,125.08,63.55,114.83Z' transform='translate(-18.19 -4.53)'/><path class='cls-1' d='M56.59,43.28H77.83s2.78-.39,2.1,3.28C79,51.8,67.5,62.39,67.5,62.39s-8.38-7.79-12.12-15.1C55.38,47.29,53.87,43.28,56.59,43.28Z' transform='translate(-18.19 -4.53)'/><circle class='cls-1' cx='77.18' cy='16.79' r='9.28'/><circle class='cls-1' cx='22.5' cy='16.79' r='9.28'/><circle class='cls-1' cx='50.38' cy='9.28' r='9.28'/></svg>");
+
  }
- .jira-list table, .jira-list th, .jira-list td {
+
+
+
+#med {
+ color:red;
+}
+.jira-list table, .jira-list th, .jira-list td {
   border: 1px solid black;
   border-collapse: collapse;
 }

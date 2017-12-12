@@ -29,24 +29,22 @@ class AdminCallbacks
 	public function loginForm()
 	{
 		$options = get_option( 'login');
-		$checked = (@$options == 1 ? 'checked' : '');
 		if (isset($_GET['code']))
 		{
-			echo "<label><b>Username or password is wrong</b></label><br>";
-			echo $_GET['code'];
+			//echo $_GET['code'];
+			echo'
+			<div class="notice notice-error is-dismissible">
+			<p><strong>Username or password is incorrect</strong></p>
+			</div>
+			';
 		}
 		echo '
-		<label>
-		<input type="checkbox" id="login" name="login" value="" '.$checked.' />
-		Activate the custom header
-		</label><br>
 		<label>
 		<input type="text" id="username" name="username" value="" placeholder="username or email" required />
 		Username
 		</label><br>
 		<label>
 		<input type="password" id="password" name="password" value="" /*pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"*/ required/>
-
 		Password
 		</label><br>
 		<a href="http://jira.foursites.nl/secure/ForgotLoginDetails.jspa" target="_blank">forget my password</a>
@@ -56,18 +54,28 @@ class AdminCallbacks
 
 	public function signinForm()
 	{
-		$options = get_option( 'signin');
-		$checked = (@$options == 1 ? 'checked' : '');
-		if (isset($_GET['info']))
+		//$options = get_option( 'signin');
+		$info = $_GET['info'];
+		if (isset($info))
 		{
-			echo "<label><b>Username or password is wrong</b></label><br>";
-			echo $_GET['info'];
+			if ($info === '201')
+			{
+				echo'
+				<div class="notice notice-success is-dismissible">
+				<p><strong>Profile created Succesfully</strong></p>
+				</div>
+				';
+			}
+			else
+			{
+				echo'
+				<div class="notice notice-error is-dismissible">
+				<p><strong>your Request is Invalid</strong></p>
+				</div>
+				';
+			}
 		}
 		echo '
-		<label>
-		<input type="checkbox" id="signin" name="signin" value="Mr anderson Welcome Back we missed you" '.$checked.' />
-		Activate the custom header
-		</label><br>
 		<label>
 		<input type="text" id="username" name="username" value="" placeholder="username" required/>
 		Username
@@ -91,7 +99,6 @@ class AdminCallbacks
 	public function updateIssueForm()
 	{
 		$options = get_option( 'create');
-		$checked = (@$options == 1 ? 'checked' : '');
 		if (isset($_GET['info']))
 		{
 			echo "<label><b>Username or password is wrong</b></label><br>";
@@ -99,10 +106,6 @@ class AdminCallbacks
 		}
 		$pages = get_pages();
 		echo '
-		<label>
-		<input type="checkbox" id="signin" name="signin" value="" '.$checked.' />
-		Activate the custom header
-		</label><br>
 		<label>
 		Summary<br>
 		<textarea rows="2" cols="50" class="sum" name="summary" value="" required></textarea>
@@ -137,7 +140,6 @@ class AdminCallbacks
 	public function createIssueForm()
 	{
 		$options = get_option( 'create');
-		$checked = (@$options == 1 ? 'checked' : '');
 		$slug='';
 		if (isset($_GET['slug']))
 		{
@@ -150,10 +152,6 @@ class AdminCallbacks
 		}
 		$pages = get_pages();
 		echo '
-		<label>
-		<input type="checkbox" id="signin" name="signin" value="" '.$checked.' />
-		Activate the custom header
-		</label><br>
 		<label>
 		Summary<br>
 		<textarea rows="2" cols="50" id="summary" name="summary" value="" placeholder="summary" required></textarea>

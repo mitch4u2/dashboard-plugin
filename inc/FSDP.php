@@ -166,6 +166,8 @@ class FSDP {
 		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'toolbar_jira',999 );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingLogin' );
+		$this->loader->add_action( 'login_init', $plugin_admin, 'FsdpSettingAutoLogin' );
+		$this->loader->add_action( 'wp_logout', $plugin_admin, 'FsdpSettingKillSession' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingSignin' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingCreateIssue' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'FsdpSettingUpdateIssue' );

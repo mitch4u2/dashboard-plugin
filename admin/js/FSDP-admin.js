@@ -64,20 +64,20 @@ jQuery(document).ready( function ($)
 		var granted = [];
 		var ungranted = [];
 		var item = '';
-		$('#tags li').each(function(i)
+		$('#tags li a').each(function(i)
 		{
 			item = $(this).text();
 			if(item.length > 0)
 			{
-				granted.push(item);
+				granted.push(item.slice(0,-1));
 			}
 		});
-		$('#ungrantedtags li').each(function(i)
+		$('#ungrantedtags li a').each(function(i)
 		{
 			item = $(this).text();
 			if(item.length > 0)
 			{
-				ungranted.push(item);
+				ungranted.push(item.slice(0,-1));
 			}
 		});
 
@@ -322,7 +322,7 @@ jQuery(document).ready( function ($)
 			{
 				if ($.inArray(key,deprecated) > -1 ) {
 
-					$('ul#tags').append('<li  id="role_'+key+'"><a href="#">'+key+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+					$('ul#tags').append('<li  id="role_'+key+'"><a style="opacity:0.7;" href="#">'+key+'<span>D</span></a></li>');
 					capsadminuni.push(key);
 				}else{
 					$('ul#tags').append('<li id="role_'+key+'"><a href="#">'+key+'<span>G</span></a></li>');
@@ -432,7 +432,7 @@ jQuery(document).ready( function ($)
 					{
 						if ($.inArray(key,deprecated) > -1 )
 						{
-							$('ul#tags').append('<li  id="role_'+key+'"><a href="#">'+key+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+							$('ul#tags').append('<li  id="role_'+key+'"><a style="opacity:0.7;" href="#">'+key+'<span>D</span></a></li>');
 							capsuni.push(key);
 						}else
 						{
@@ -450,7 +450,7 @@ jQuery(document).ready( function ($)
 						if ($.inArray(capsadminuni[i],deprecated) > -1 )
 						{
 							allcaps.push(capsadminuni[i]);
-							$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a href="#">'+capsadminuni[i]+'<span style="background: #56a3d5;border-color: #3591cd #318cc7 #2f86be;">D</span></a></li>');
+							$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a style="opacity:0.7;" href="#">'+capsadminuni[i]+'<span>D</span></a></li>');
 						}else{
 							allcaps.push(capsadminuni[i]);
 							$('ul#ungrantedtags').append('<li id="role_'+capsadminuni[i]+'"><a href="#">'+capsadminuni[i]+'<span>U</span></a></li>');
@@ -592,7 +592,6 @@ jQuery(document).ready( function ($)
 {
 	$(document).on('click','.homes-list li', function ()
 	{
-
 		var catarr = new Array();
 		var cat = $(this).data('cat');
 		var color = '';

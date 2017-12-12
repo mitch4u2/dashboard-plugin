@@ -36,7 +36,7 @@ namespace admin;
 			<td>SOMETHING</td>
 		</tr>
 		<tr>
-			<td>Capabilities Categories</td>
+			<td>Capabilities Categories  (Total/Granted)</td>
 			<td>Capabilities</td>
 			<td>Actions</td>
 		</tr>
