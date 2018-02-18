@@ -104,11 +104,12 @@ class User {
 
 	public function Search(){
 
-		//$base64_usrpwd = base64_encode('wiljon:weEw4BTpsh6h');
+		//$base64_usrpwd = base64_encode('mohamed:qrt235234@#$%!');
+		
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/search?jql=reporter=currentuser()&fields=summary,comment,description,resolutiondate,customfield_10100,updated,created,issuetype,status,priority,assignee,resolution');
-
+		curl_setopt($ch, CURLOPT_URL, 'https://jira.foursites.nl/rest/api/2/search?jql=reporter=currentuser()&fields=summary,comment,description,resolutiondate,customfield_10100,updated,created,issuetype,status,priority,assignee,resolution');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//magical line
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 
@@ -121,7 +122,9 @@ class User {
 
 		/*curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Authorization: Basic '.$base64_usrpwd));*/
 		$curl_response = curl_exec($ch);
+		var_dump($curl_response);
 		$ch_error = curl_error($ch);
+		var_dump($ch_error);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($ch_error) {
 			$character= false ;
@@ -137,7 +140,7 @@ class User {
 		//$base64_usrpwd = base64_encode('wiljon:weEw4BTpsh6h');
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/issue/'.$issueKey.'?fields=summary,comment,description,resolutiondate,customfield_10100,updated,created,issuetype,status,priority,assignee,resolution');
+		curl_setopt($ch, CURLOPT_URL, 'https://jira.foursites.nl/rest/api/2/issue/'.$issueKey.'?fields=summary,comment,description,resolutiondate,customfield_10100,updated,created,issuetype,status,priority,assignee,resolution');
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
@@ -204,7 +207,7 @@ class User {
 	public static function Comment($issueKey,$comment){
 
 		//echo $summary.$description.$type.$priority.$page;
-		//$base64_usrpwd = base64_encode('wiljon:weEw4BTpsh6h');
+		//$base64_usrpwd = base64_encode('willjon:weEw4BTpsh6h');
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/issue/'.$issueKey.'/comment');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -354,7 +357,53 @@ class User {
 		echo $password;*/
 		//$base64_usrpwd = base64_encode('harm:hu1z3putm4n');
 
-		$ch = curl_init('http://jira.foursites.nl/rest/auth/1/session');
+		$ch = curl_init('https://jira.foursites.nl/rest/auth/1/session');
+		$jsonData = array(
+			'username' => $username,
+			'password' => $password );
+		$jsonDataEncoded = json_encode($jsonData);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//magical line
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		$sess_arr = json_decode($result, true);
+		
+
+		if(isset($sess_arr['errorMessages'][0])) {
+			wp_redirect( "admin.php?page=jira_settings" .'&code='.$sess_arr['errorMessages'][0] );		
+		}
+		else {
+			setcookie($sess_arr['session']['name'], $sess_arr['session']['value'], time() + (86400 * 30 * 100), "/");
+			$user_id=get_current_user_id();
+			if ( (bool) $user_id) {
+				$havemetauser = get_user_meta($user_id, '_jira_user', false);
+				$havemetapass = get_user_meta($user_id, '_jira_password', false);
+				if ((!$havemetauser) && (!$havemetapass)) {
+					add_user_meta( $user_id, '_jira_user', $username);
+					add_user_meta( $user_id, '_jira_password', $password);
+					
+				}
+				else {
+					update_user_meta( $user_id, '_jira_user', $username);
+					update_user_meta( $user_id, '_jira_password', $password);
+				}
+			}
+			wp_redirect( "admin.php?page=jira_tickets", $status = 302 );
+		}
+		curl_close($ch);
+	}
+
+	public static function loginSession1($username,$password){
+		/*echo $username.'<br>';
+		echo $password;*/
+		//$base64_usrpwd = base64_encode('harm:hu1z3putm4n');
+
+		$ch = curl_init('https://jira.foursites.nl/jira/rest/auth/1/session');
 		$jsonData = array(
 			'username' => $username,
 			'password' => $password );
@@ -366,12 +415,16 @@ class User {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
 		$result = curl_exec($ch);
+		var_dump($username);
+		var_dump($password);
+		echo $ch; 
 		curl_close($ch);
 
 		$sess_arr = json_decode($result, true);
+		
 
-		if(isset($sess_arr['errorMessages'][0])) {
-			wp_redirect( "admin.php?page=jira_settings" .'&code='.$sess_arr['errorMessages'][0] );
+		/*if(isset($sess_arr['errorMessages'][0])) {
+			wp_redirect( "admin.php?page=jira_settings" .'&code='.$sess_arr['errorMessages'][0] );		
 		}
 		else {
 			setcookie($sess_arr['session']['name'], $sess_arr['session']['value'], time() + (86400 * 30 * 100), "/");
@@ -382,16 +435,17 @@ class User {
 				if ((!$havemetauser) && (!$havemetapass)) {
 					add_user_meta( $user_id, '_jira_user', $username);
 					add_user_meta( $user_id, '_jira_password', $password);
+					
 				}
 			}
 			wp_redirect( "admin.php?page=jira_tickets", $status = 302 );
 		}
-		curl_close($ch);
+		curl_close($ch);*/
 	}
 
 	public function signin($username,$password,$name,$email){
 
-		$base64_usrpwd = base64_encode('wilon:weEw4BTpsh6h');
+		$base64_usrpwd = base64_encode('willjon:weEw4BTpsh6h');
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://jira.foursites.nl/rest/api/2/user');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

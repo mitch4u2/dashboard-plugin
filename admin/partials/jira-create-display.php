@@ -18,17 +18,14 @@ namespace admin;
 
 
 
-<div class="wrap">
-	JIRA Create Ticket
-</div>
-
-
-<h1>Create a ticket</h1>
+<h1 class="ttl">Create a ticket</h1>
 <?php settings_errors(); ?>
+
+<div class="createform">
+	<h1 class="tt2">FILL YOUR ISSUE HERE</h1>
 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
 	<?php settings_fields( 'jira_issue_create' ); ?>
 	<?php do_settings_sections( 'jira_settings_create' ); ?>
 	<?php submit_button( 'Create', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
 </form>
-
-
+</div>

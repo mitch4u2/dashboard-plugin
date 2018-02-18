@@ -1,21 +1,13 @@
 {
-    "name": "foursites/foursites-dashboard-plugin",
-    "description": "foursites dashboard plugin",
+    "name": "med/foursites-dashboard-plugin",
+    "description": "dashboard plugin",
     "type": "project",
-    "license": "GPL",
-    "authors": [
-        {
-            "name": "Mohamed",
-            "email": "mohamed.hajjej@foursites.nl"
-        }
-    ],
+    "license": "gpl",
     "minimum-stability": "dev",
     "require": {},
-    "autoload": {
-        "psr-4": {
-            "inc\\":"./inc",
-            "admin\\":"./admin",
-            "front\\":"./front"
-        }
+    "autoload":{
+        "psr-4": {"inc\\":"./inc",
+                   "admin\\":"./admin",
+                   "front\\":"./front" }
     }
 }

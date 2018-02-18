@@ -24,21 +24,33 @@
 <div class="tab-content">
 	<div id="tab-1" class="tab-pane active">
 
+
+
 		<ul class="nav-form">
-		<li>
+		<li class="login">
+
 		<?php settings_errors(); ?>
 		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
 			<?php settings_fields( 'jira_user_login' ); ?>
 			<?php do_settings_sections( 'jira_settings_login' ); ?><br>
-			<?php submit_button( 'Login', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ); ?>
+			<?php /*submit_button( 'Login', $type = 'login100-form-btn', $name = 'submit', $wrap = true, $other_attributes = null );*/ ?>
+			<div class="container-login100-form-btn">
+				<button type="submit" name="submit" id="submit" class="login100-form-btn" value="Login">
+					login
+				</button>
+			</div>
 		</form>
 		</li>
-		<li>
+		<li class="signin" style="display: none">
 		<?php settings_errors(); ?>
 		<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
 			<?php settings_fields( 'jira_user_signin' ); ?>
 			<?php do_settings_sections( 'jira_settings_signin' ); ?>
-			<?php submit_button( 'Signin', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ); ?>
+			<div class="container-login100-form-btn">
+				<button type="submit" name="submit" id="submit" class="login100-form-btn" value="Signin">
+					Signin
+				</button>
+			</div>
 		</form>
 		</li>
 		</ul>

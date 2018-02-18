@@ -159,18 +159,27 @@ jQuery(document).ready( function ($)
 
 
 
-
-
 /* DELETE ROLE CONFIRMATION */
 /* ------------------------*/
 jQuery(document).ready( function ($)
 {
-
+	//$(".signin").css("background-color", "yellow");
 	$("button[type='delete']").click(function(){
 		if (!confirm("Do you want to delete")){
 			return false;
 		}
 	});
+
+	$(".signinform").click(function(){
+		$('.signin').toggle( "slow", function() {
+    // Animation complete.
+  });
+		$('.login').toggle( "slow", function() {
+    // Animation complete.
+  });
+	});
+
+
 });
 
 

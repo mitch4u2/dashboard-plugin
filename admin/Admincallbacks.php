@@ -28,6 +28,8 @@ class AdminCallbacks
 
 	public function loginForm()
 	{
+
+		settings_errors();
 		$options = get_option( 'login');
 		if (isset($_GET['code']))
 		{
@@ -39,15 +41,33 @@ class AdminCallbacks
 			';
 		}
 		echo '
-		<label>
-		<input type="text" id="username" name="username" value="" placeholder="username or email" required />
-		Username
-		</label><br>
-		<label>
-		<input type="password" id="password" name="password" value="" /*pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"*/ required/>
-		Password
-		</label><br>
-		<a href="http://jira.foursites.nl/secure/ForgotLoginDetails.jspa" target="_blank">forget my password</a>
+	
+
+		<div class="limiter">
+		<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-logo">
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
+						<span class="focus-input100" data-placeholder="&#xf110;"></span>
+						
+					</div>
+
+
+		<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
+						<span class="focus-input100" data-placeholder="&#xf160;"></span>
+					</div>
+		
+		<a class="txt1" href="http://jira.foursites.nl/secure/ForgotLoginDetails.jspa">
+							Forgot Password?
+						</a>&nbsp;
+						<a class="txt1 signinform">
+							signin >
+						</a>
+						</form></div></div>
+		
 		<input type="hidden" name="action" value="login_form">
 		';
 	}
@@ -76,22 +96,36 @@ class AdminCallbacks
 			}
 		}
 		echo '
-		<label>
-		<input type="text" id="username" name="username" value="" placeholder="username" required/>
-		Username
-		</label><br>
-		<label>
-		<input type="text" id="name" name="name" value="" placeholder="name" required/>
-		name
-		</label><br>
-		<label>
-		<input type="email" id="email" name="email" value="" placeholder="email" required/>
-		Email
-		</label><br>
-		<label>
-		<input type="password" id="password" name="password" value="" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
-		Password
-		</label><br>
+
+		<div class="limiter">
+		<div class="wrap-login100">
+				<form class="login100-form validate-form">
+
+				<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
+						<span class="focus-input100" data-placeholder="&#xf110;"></span>
+						
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter name">
+						<input class="input100" type="text" id="name"  name="name" placeholder="Name" required>
+						<span class="focus-input100" data-placeholder="&#xf484;"></span>
+						
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter email">
+						<input class="input100" type="email" id="email"  name="email" placeholder="Email" required>
+						<span class="focus-input100" data-placeholder="&#xf466;"></span>
+						
+					</div>
+
+		<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" id="password" name="password" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required autocomplete="new-password">
+						<span class="focus-input100" data-placeholder="&#xf160;"></span>
+					</div>
+					<a class="txt1 signinform">
+							< login
+						</a>
 		<input type="hidden" name="action" value="signin_form">
 		';
 	}
@@ -152,16 +186,21 @@ class AdminCallbacks
 		}
 		$pages = get_pages();
 		echo '
-		<label>
+		<label class="tt3">
 		Summary<br>
-		<textarea rows="2" cols="50" id="summary" name="summary" value="" placeholder="summary" required></textarea>
+		
+			<textarea class="input101" rows="3" cols="50" id="summary" name="summary" value="" placeholder="summary" required></textarea>
+					
 		</label><br>
-		<label>
+		<label class="tt3">
 		Description<br>
-		<textarea rows="4" cols="50" id="description" name="description" value="" placeholder="description" required></textarea>
+		
+						<textarea class="input101" rows="4" cols="50" id="description" name="description" value="" placeholder="description" required></textarea>
+				
 		</label><br>
-		<label>
-		<select name="page">
+		<div class="row">
+		<label class="tt3">Page<br>
+		<select class="input101" name="page">
 		';
 		foreach ($pages as $page)
 		{
@@ -178,29 +217,29 @@ class AdminCallbacks
 		echo '
 		"<option value="other">Other</option>"
 		</select>
-		Page
 		</label><br>
-		<label>
-		<select name="type">
+		<label class="tt3">Issue Type <br>
+		<select class="input101" name="type">
 		<option value="Bug">Bug</option>
 		<option value="New Feature">New Feature</option>
 		</select>
-		Issue type
 		</label><br>
-		<label>
-		<select name="priority">
+		</div>
+		<div class="row">
+		<label class="tt3">Priority
+		<select class="input101" name="priority">
 		<option value="Major">Major</option>
 		<option value="Blocker">Blocker</option>
 		<option value="Critical">Critical</option>
 		<option value="Minor">Minor</option>
 		<option value="Trivial">Trivial</option>
 		</select>
-		Priority
 		</label><br>
 		<label>
 		<input type="date" id="date" name="date" value="" placeholder="date" required/>
 		Due date
 		</label><br>
+		</div>
 		<input type="hidden" name="action" value="create_issue_form">
 		';
 	}

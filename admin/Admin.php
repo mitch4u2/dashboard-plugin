@@ -85,6 +85,7 @@ class Admin{
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/FSDP-admin.css', array(), $this->version, 'all' );
+
 		//wp_enqueue_style('e2b-admin-ui-css','http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.css',false,"1.9.0",false);
 
 	}
@@ -241,7 +242,7 @@ class Admin{
 	function FsdpSettingLogin()
 	{
 		register_setting('jira_user_login', 'login' );
-		add_settings_section( 'jira-setting-section', 'Login Form','', 'jira_settings_login' );
+		add_settings_section( 'jira-setting-section', '','', 'jira_settings_login' );
 		add_settings_field( 'setting-form', '',array($this->callback, 'loginForm') , 'jira_settings_login', 'jira-setting-section');
 	}
 	function FsdpSettingAutoLogin()
@@ -275,13 +276,13 @@ class Admin{
 	function FsdpSettingSignin()
 	{
 		register_setting('jira_user_signin', 'signin' );
-		add_settings_section( 'jira-setting-section', 'Signin Form','' , 'jira_settings_signin' );
+		add_settings_section( 'jira-setting-section', '','' , 'jira_settings_signin' );
 		add_settings_field( 'setting-form', '',array($this->callback, 'signinForm') , 'jira_settings_signin', 'jira-setting-section');
 	}
 	function FsdpSettingCreateIssue()
 	{
 		register_setting('jira_issue_create', 'createIssue' );
-		add_settings_section( 'jira-setting-section', 'Create Issue Form','' , 'jira_settings_create' );
+		add_settings_section( 'jira-setting-section', '','' , 'jira_settings_create' );
 		add_settings_field( 'setting-form', '',array($this->callback, 'createIssueForm') , 'jira_settings_create', 'jira-setting-section');
 	}
 
@@ -332,7 +333,9 @@ class Admin{
 	function login()
 	{
 		status_header(200);
-		User::loginSession($_POST['username'],$_POST['password']);
+		User:: loginSession($_POST['username'],$_POST['password']);
+		//User::login('mohamed','qrt235234@#$%!');
+
 	}
 	function signin()
 	{
