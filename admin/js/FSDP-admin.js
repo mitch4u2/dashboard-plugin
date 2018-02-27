@@ -173,10 +173,10 @@ jQuery(document).ready( function ($)
 	$(".signinform").click(function(){
 		$('.signin').toggle( "slow", function() {
     // Animation complete.
-  });
+});
 		$('.login').toggle( "slow", function() {
     // Animation complete.
-  });
+});
 	});
 
 
@@ -186,7 +186,7 @@ jQuery(document).ready( function ($)
 
 
 
-/* Ajax Functions fro modal View Ticket */
+/* Ajax Functions for modal View Ticket */
 /* ------------------------------------*/
 jQuery(document).ready( function ($)
 {
@@ -380,9 +380,9 @@ jQuery(document).ready( function ($)
 				$( "#roles" ).autocomplete({
 					source: capsadminuni,
 					select: function( event, ui ) {
-						$( "#role_"+ui.item.value+" a" ).css("color", "black");
-						$( "#role_"+ui.item.value+" a" ).css("font-size", "18px");
-						$( "#role_"+ui.item.value+" a" ).css("font-weight", "bolder");
+						$( "#role_"+ui.item.value+" a" ).css("color", "red");
+						/*$( "#role_"+ui.item.value+" a" ).css("font-size", "18px");
+						$( "#role_"+ui.item.value+" a" ).css("font-weight", "bolder");*/
 					}
 				});
 			} );
@@ -402,10 +402,6 @@ jQuery(document).ready( function ($)
 					var postdata = $(this).sortable('serialize');
 				}
 			});
-
-
-
-
 		}
 	});
 
@@ -596,9 +592,9 @@ window.onclick = function(event)
 
 /* JS Functions for role  categories  */
 /* -----------------------------------*/
-
 jQuery(document).ready( function ($)
-{
+{	
+	$(".loadinglogo").css('display','none');
 	$(document).on('click','.homes-list li', function ()
 	{
 		var catarr = new Array();
@@ -613,8 +609,8 @@ jQuery(document).ready( function ($)
 		var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
 
 
-		$(".homes-list li").css('width','120px');
-		$(this).css('width','130px');
+		$(".homes-list li").css('width','auto');
+		$(this).css('width','90%');
 
 		switch(cat) {
 			case 'General':

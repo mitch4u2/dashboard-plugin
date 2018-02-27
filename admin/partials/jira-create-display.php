@@ -26,6 +26,10 @@ namespace admin;
 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
 	<?php settings_fields( 'jira_issue_create' ); ?>
 	<?php do_settings_sections( 'jira_settings_create' ); ?>
-	<?php submit_button( 'Create', $type = 'primary', $name = 'submit', $wrap = true, $other_attributes = null ) ?>
+	<div class="container-login100-form-btn">
+				<button type="submit" name="submit" id="submit" class="login101-form-btn" value="Create">
+					Create Ticket
+				</button>
+			</div>
 </form>
 </div>

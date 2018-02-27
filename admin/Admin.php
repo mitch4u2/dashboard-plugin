@@ -303,7 +303,7 @@ class Admin{
 	function FsdpSettingCreateRole()
 	{
 		register_setting('user_role_create', 'createRole' );
-		add_settings_section( 'jira-setting-section', 'Create role form','' , 'user_role_settings_create' );
+		add_settings_section( 'jira-setting-section', '','' , 'user_role_settings_create' );
 		add_settings_field( 'setting-form', '',array($this->callback, 'createRoleForm') , 'user_role_settings_create', 'jira-setting-section');
 	}
 

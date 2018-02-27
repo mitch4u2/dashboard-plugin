@@ -41,32 +41,32 @@ class AdminCallbacks
 			';
 		}
 		echo '
-	
+
 
 		<div class="limiter">
 		<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-logo">
-					</span>
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
-						<span class="focus-input100" data-placeholder="&#xf110;"></span>
-						
-					</div>
+		<form class="login100-form validate-form">
+		<span class="login100-form-logo">
+		</span>
+		<div class="wrap-input100 validate-input" data-validate = "Enter username">
+		<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
+		<span class="focus-input100" data-placeholder="&#xf110;"></span>
+
+		</div>
 
 
 		<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
-						<span class="focus-input100" data-placeholder="&#xf160;"></span>
-					</div>
+		<input class="input100" type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
+		<span class="focus-input100" data-placeholder="&#xf160;"></span>
+		</div>
 		
 		<a class="txt1" href="http://jira.foursites.nl/secure/ForgotLoginDetails.jspa">
-							Forgot Password?
-						</a>&nbsp;
-						<a class="txt1 signinform">
-							signin >
-						</a>
-						</form></div></div>
+		Forgot Password?
+		</a>&nbsp;
+		<a class="txt1 signinform">
+		signin >
+		</a>
+		</form></div></div>
 		
 		<input type="hidden" name="action" value="login_form">
 		';
@@ -99,33 +99,33 @@ class AdminCallbacks
 
 		<div class="limiter">
 		<div class="wrap-login100">
-				<form class="login100-form validate-form">
+		<form class="login100-form validate-form">
 
-				<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
-						<span class="focus-input100" data-placeholder="&#xf110;"></span>
-						
-					</div>
+		<div class="wrap-input100 validate-input" data-validate = "Enter username">
+		<input class="input100" type="text" id="username"  name="username" placeholder="Username" required>
+		<span class="focus-input100" data-placeholder="&#xf110;"></span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter name">
-						<input class="input100" type="text" id="name"  name="name" placeholder="Name" required>
-						<span class="focus-input100" data-placeholder="&#xf484;"></span>
-						
-					</div>
+		</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter email">
-						<input class="input100" type="email" id="email"  name="email" placeholder="Email" required>
-						<span class="focus-input100" data-placeholder="&#xf466;"></span>
-						
-					</div>
+		<div class="wrap-input100 validate-input" data-validate = "Enter name">
+		<input class="input100" type="text" id="name"  name="name" placeholder="Name" required>
+		<span class="focus-input100" data-placeholder="&#xf484;"></span>
+
+		</div>
+
+		<div class="wrap-input100 validate-input" data-validate = "Enter email">
+		<input class="input100" type="email" id="email"  name="email" placeholder="Email" required>
+		<span class="focus-input100" data-placeholder="&#xf466;"></span>
+
+		</div>
 
 		<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" id="password" name="password" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required autocomplete="new-password">
-						<span class="focus-input100" data-placeholder="&#xf160;"></span>
-					</div>
-					<a class="txt1 signinform">
-							< login
-						</a>
+		<input class="input100" type="password" id="password" name="password" placeholder="Password" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required autocomplete="new-password">
+		<span class="focus-input100" data-placeholder="&#xf160;"></span>
+		</div>
+		<a class="txt1 signinform">
+		< login
+		</a>
 		<input type="hidden" name="action" value="signin_form">
 		';
 	}
@@ -189,16 +189,17 @@ class AdminCallbacks
 		<label class="tt3">
 		Summary<br>
 		
-			<textarea class="input101" rows="3" cols="50" id="summary" name="summary" value="" placeholder="summary" required></textarea>
-					
+		<textarea class="input101" rows="3" cols="50" id="summary" name="summary" value="" placeholder="summary" required></textarea>
+
 		</label><br>
 		<label class="tt3">
 		Description<br>
 		
-						<textarea class="input101" rows="4" cols="50" id="description" name="description" value="" placeholder="description" required></textarea>
-				
+		<textarea class="input101" rows="4" cols="50" id="description" name="description" value="" placeholder="description" required></textarea>
+
 		</label><br>
-		<div class="row">
+		<div class="selectforms">
+		<div class="rowform pickme">
 		<label class="tt3">Page<br>
 		<select class="input101" name="page">
 		';
@@ -216,7 +217,7 @@ class AdminCallbacks
 		}
 		echo '
 		"<option value="other">Other</option>"
-		</select>
+		</select><br>
 		</label><br>
 		<label class="tt3">Issue Type <br>
 		<select class="input101" name="type">
@@ -225,7 +226,8 @@ class AdminCallbacks
 		</select>
 		</label><br>
 		</div>
-		<div class="row">
+
+		<div class="rowform">
 		<label class="tt3">Priority
 		<select class="input101" name="priority">
 		<option value="Major">Major</option>
@@ -234,12 +236,15 @@ class AdminCallbacks
 		<option value="Minor">Minor</option>
 		<option value="Trivial">Trivial</option>
 		</select>
-		</label><br>
-		<label>
-		<input type="date" id="date" name="date" value="" placeholder="date" required/>
+		</label><br><br>
+		
+		<label class="tt3">
 		Due date
+		<input class="input101" type="date" id="date" name="date" value="" placeholder="date" required/>
 		</label><br>
 		</div>
+		</div>
+		
 		<input type="hidden" name="action" value="create_issue_form">
 		';
 	}
@@ -257,13 +262,12 @@ class AdminCallbacks
 	{
 		echo
 		'
-		<label>
-		<input type="text" name="id" id="id" placeholder="Role Name" reauired>
-		Role Name:
-		</label><br>
-		<input type="text" name="name" id="name" placeholder="Role Display Name" required>
-		Role Display Name:
-		</label><br>
+		<label class="tt3">Role Name</label>
+		<input class="input101" type="text" name="id" id="id" placeholder="Role Name" required>
+		
+		<br>
+		<label class="tt3">Role Display Name</label>
+		<input class="input101" type="text" name="name" id="name" placeholder="Role Display Name" required>
 		<input type="hidden" name="action" value="create_role_form">';
 	}
 
