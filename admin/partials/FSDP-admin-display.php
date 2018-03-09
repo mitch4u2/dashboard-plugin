@@ -13,6 +13,10 @@ namespace admin;
  */
 ?>
 
+<div class="fsdp-header">
+	<div class="fsdp-logo"></div>
+	<br>
+</div>
 
 <h2>Modal Example</h2>
 
@@ -23,8 +27,74 @@ namespace admin;
 <!-- The Modal -->
 
 
+<div class="rowstat">
+	<ul>
+					<li>
+						<div class="rad-info-box rad-txt-success">
+							<i class="dashicons dashicons-share"></i>
+							<span class="heading">Microsoft</span>
+							<span class="value"><span>4949</span></span>
+						</div>
+					</li>
+					<li>
+						<div class="rad-info-box rad-txt-primary">
+							<i class="dashicons dashicons-hammer"></i>
+							<span class="heading">Facebook</span>
+							<span class="value"><span>23K</span></span>
+						</div>
+					</li>
+					<li>
+						<div class="rad-info-box rad-txt-danger">
+							<i class="dashicons dashicons-flag"></i>
+							<span class="heading">Google</span>
+							<span class="value"><span>49M</span></span>
+						</div>
+					</li>
+					<li>
+						<div class="rad-info-box">
+							<i class="dashicons dashicons-admin-tools"></i>
+							<span class="heading">Apple</span>
+							<span class="value"><span>10.9K</span></span>
+						</div>
+					</li>
+					</ul>
+</div>
 
-<button class="button button-primary load_ajax" data-page='1' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>">Load Ajay</button>
+
+<div class="rowsgauge">
+	<ul>
+		<li>
+			<div class="rad-info-box rad-txt-danger">
+				<div id="chart_div" style="width: 400px; height: 180px;"></div>
+				<span class="heading">Google</span>
+				<span class="value"><span>49M</span></span>
+			</div>
+		</li>
+		<li>
+			<div class="rad-gauge-box rad-txt-danger">
+				<div class="cardheader"></div>
+				<p>lsjfhkqlsjdhfkljsqdhfkljqsdhfbr	<br> lkjlkjlbr	lkjlkjlkj <br><br></p>
+				<span class="heading">Google</span>
+				<span class="value"><span>49M</span></span>
+			</div>
+		</li>
+		<li>
+			<div class="rad-info-box rad-txt-danger">
+				<div id="chart_div1" style="width: 400px; height: 180px;"></div>
+				<span class="heading">Google</span>
+				<span class="value"><span>49M</span></span>
+			</div>
+		</li>
+	</ul>
+
+
+</div>
+
+
+
+
+<br>
+<!-- <button class="button button-primary load_ajax" data-page='1' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>">Load Ajay</button> -->
 
 <br><br>
 <div class="jira-container"></div>
@@ -43,11 +113,11 @@ namespace admin;
 			<div class="content-wrap">
 				<section id="section-topline-1">
 					<p>if the website score reach the Yellow area an automatic Issue Type Bug will be generated an autoassigned to  one of foursites beautiful developer to work on it</p>
-					<div id="chart_div" style="width: 400px; height: 180px;"></div>
+					<!-- <div id="chart_div" style="width: 400px; height: 180px;"></div> -->
 				</section>
 				<section id="section-topline-2">
 					<p>if the website score reach the Red area an automatic Issue Type Urgent will be generated an autoassigned to one of foursites beautiful developer to work on it </p>
-					<div id="chart_div1" style="width: 400px; height: 180px;"></div>
+					<!-- <div id="chart_div1" style="width: 400px; height: 180px;"></div> -->
 				</section>
 			</div><!-- /content -->
 		</div><!-- /tabs -->
@@ -61,13 +131,13 @@ namespace admin;
 <!-- <button id="posts-btn">LOAD POSTS</button> -->
 <div id="chart_div" style="width: 400px; height: 180px;"></div>
 <?php $user = new User('','');
-/*$arr=$user->PageSpeed('desktop');
+$arr=$user->PageSpeed('desktop');
 $arr1=$user->PageSpeed('mobile');
-*/
+
 $arr2=$user->Search();
-//$user->userProfile();
-//echo 'Speed:'.$arr[0].' Usability:'.$arr1[1];
-//echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
+$user->userProfile();
+echo 'Speed:'.$arr[0].' Usability:'.$arr1[1];
+echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
 <div id="posts-container"></div>
 <div id="donutchart" style="width: 650px; height: 450px;"></div>
 <div class="jira-list">
@@ -209,7 +279,7 @@ $arr2=$user->Search();
 </script>
 <!-- Script to fill in the update form and to open the model -->
 <script>
-	/*(function( $ ) {
+	(function( $ ) {
 		$( window ).load(function() {
 			google.charts.load('current', {'packages':['gauge']});
 			google.charts.setOnLoadCallback(drawChart);
@@ -229,11 +299,11 @@ $arr2=$user->Search();
 				var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 				chart.draw(data, options);
 			}
-		});*/
+		});
 
 		/*Script to Run the gauge chart by retrieving data from PageSpeed('mobile') php function */
 
-		/*$( window ).load(function() {
+		$( window ).load(function() {
 			google.charts.load('current', {'packages':['gauge']});
 			google.charts.setOnLoadCallback(drawChart);
 			function drawChart() {
@@ -252,11 +322,11 @@ $arr2=$user->Search();
 				var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
 				chart.draw(data1, options1);
 			}
-		});*/
+		});
 
-		/*Script to Run the gauge chart by retrieving data from PageSpeed('mobile') php function */
+		/*Script to Run the pie chart by retrieving data from JIRA API  function */
 
-		/*$( window ).load(function() {
+		$( window ).load(function() {
 			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
 			function drawChart() {
@@ -277,7 +347,7 @@ $arr2=$user->Search();
 			}
 
 		});
-	})( jQuery );*/
+	})( jQuery );
 </script>
 
 <!-- Script to Run the folder tab design for the pagespeed -->

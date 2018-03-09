@@ -1284,3 +1284,134 @@ margin-right: 0.5rem;
 .addrole th{
 display: none;
 }
+
+
+/*fsdp header*/
+
+.fsdp-header{
+  width: 98% !important;
+  height: 70px;
+  padding: 0;
+  margin-right: 20px;
+  margin-top: 0; 
+  box-shadow:0 2px 5px 0 rgba(0,0,0,.26);
+
+}
+.fsdp-logo{
+  background-image: url("../img/fsdp-logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+    margin-left: 30px;
+    height: 50px;
+    width: 250px;
+    position: absolute;
+  }
+/*settings stat*/
+
+.rad-gauge-box{  
+  margin-bottom:16px;
+  box-shadow:1px 1px 2px 0 #CCCCCC;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,.26);
+  height: 100%;
+}
+
+.rowstat .rowsgauge{
+  width: 100%;
+  position: relative;
+  margin: 0;
+}
+.rowstat ul .rowsgauge ul{
+ list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+  }
+
+ .rowsgauge li{
+display: inline-block;
+margin: 0 10px 0 10px;
+} 
+.rowstat li{
+display: inline-block;
+margin: 0 20px 0 20px;
+width: 20%;
+}
+
+.cardheader{
+  display: block;
+  background-image: url("../img/pagespeed.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  width:200px;
+  height: 100px;
+  }
+
+.rad-info-box{  
+  margin-bottom:16px;
+  box-shadow:1px 1px 2px 0 #CCCCCC;
+  padding:20px;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,.26);
+  background:$base-color !important;
+}
+
+.rad-info-box i{
+  display:block;
+  background-clip:padding-box;
+  margin-right:15px;
+  height:60px;
+  width:60px;
+  border-radius:100%;
+  line-height:60px;
+  text-align:center;
+  font-size:4.4em;
+  position:absolute;  
+}
+
+.rad-info-box .value,
+.rad-info-box .heading{
+  display:block;  
+  position:relative;
+  color: $text-color;
+  text-align:right;
+  z-index:10;
+}
+
+.rad-info-box .heading{
+  font-size:1.2em;
+  font-weight:300;
+  text-transform:uppercase;
+}
+
+.rad-info-box .value{
+  font-size:2.1em;
+  font-weight:600;
+  margin-top:5px;
+}
+
+
+.rad-txt-primary{
+  color:#1C7EBB;
+}
+.rad-bg-primary{
+  background:#1C7EBB;
+}
+.rad-txt-success{
+  color:#23AE89;
+}
+.rad-bg-success{
+  background:#23AE89;
+}
+.rad-txt-danger{
+  color:#E94B3B;
+}
+.rad-bg-danger{
+  background:#E94B3B;
+}
+.rad-txt-warning{
+  color:#F98E33;
+}

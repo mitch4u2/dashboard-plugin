@@ -567,6 +567,7 @@ class User {
 		curl_setopt($ch, CURLOPT_URL, 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=http://www.foursites.nl/&key=AIzaSyAX1AOJ_EYCPyTMgob4r-m_qSDjfB75g1I&strategy='.$strategy);
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//magical line
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		$curl_response = curl_exec($ch);
