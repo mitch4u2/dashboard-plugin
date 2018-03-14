@@ -13,6 +13,18 @@ namespace admin;
  */
 ?>
 
+<?php $user = new User('','');
+$arr=$user->PageSpeed('desktop');
+$arr1=$user->PageSpeed('mobile');
+
+//$arr2=$user->Search();
+//$user->userProfile();
+/*echo 'Speed:'.$arr[0].' Usability:'.$arr1[1];
+echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
+
+
+
+
 <div class="fsdp-header">
 	<div class="fsdp-logo"></div>
 	<br>
@@ -64,65 +76,65 @@ namespace admin;
 <div class="rowsgauge">
 	<ul>
 		<li>
-			<div class="rad-info-box rad-txt-danger">
-				<div id="chart_div" style="width: 400px; height: 180px;"></div>
-				<span class="heading">Google</span>
-				<span class="value"><span>49M</span></span>
+			<div class="rad-info-box">
+
+					<div class="panel-heading">
+						<ul>
+							<li><i class="dashicons dashicons-desktop"></i></li>
+							<li><h3 class="panel-title"> Desktop speed index</h3></li>
+						</ul>
+					</div><br>
+					<hr>
+
+				<div id="chart_div"></div>
+				<hr>
+
+					
+				<span class="value" style="font-size: 16px;"><span style="background-color: green;color: white;">&nbsp;<?php echo $arr[0]; ?> / 100&nbsp;</span> Speed</span>
 			</div>
 		</li>
 		<li>
-			<div class="rad-gauge-box rad-txt-danger">
-				<div class="cardheader"></div>
-				<p>lsjfhkqlsjdhfkljsqdhfkljqsdhfbr	<br> lkjlkjlbr	lkjlkjlkj <br><br></p>
-				<span class="heading">Google</span>
-				<span class="value"><span>49M</span></span>
+			<div class="rad-info-card">
+			<div class="panel-heading">
+						<ul>
+							<li><i class="dashicons dashicons-info"></i></li>
+							<li><h3 class="panel-title"> info</h3></li>
+						</ul>
+					</div><br>
+					<hr>
+				<span class="card-info">
+						the gauges are powered by google page speed index it indicates your websites speed and usability both for  desktop and mobile.
+						in order to maintain a quality of work the developer team of Foursites will get an autaumatic warning in their system if the gauge reachs the yellow area
+				</span>
 			</div>
 		</li>
 		<li>
-			<div class="rad-info-box rad-txt-danger">
-				<div id="chart_div1" style="width: 400px; height: 180px;"></div>
-				<span class="heading">Google</span>
-				<span class="value"><span>49M</span></span>
+			<div class="rad-info-box">
+				<div class="panel-heading">
+						<ul>
+							<li><i class="dashicons dashicons-smartphone"></i></li>
+							<li><h3 class="panel-title"> mobile speed index</h3></li>
+						</ul>
+					</div><br>
+					<hr>
+				<div id="chart_div1"></div>
+				<hr>
+				<span class="value" style="font-size: 16px;"><span style="background-color: green;color: white;">&nbsp;<?php echo $arr1[0]; ?> / 100&nbsp;</span> Speed</span>
 			</div>
 		</li>
 	</ul>
-
-
 </div>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
-<br>
 <!-- <button class="button button-primary load_ajax" data-page='1' data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>">Load Ajay</button> -->
 
 <br><br>
 <div class="jira-container"></div>
 <br><br>
 
-<div class="speedtest">
-	<!-- Top Navigation -->
-	<section>
-		<div class="tabs tabs-style-topline">
-			<nav>
-				<ul>
-					<li><a href="#section-topline-1" class="icon icon-home"><span>Desktop</span></a></li>
-					<li><a href="#section-topline-2" class="icon icon-gift"><span>Mobile</span></a></li>
-				</ul>
-			</nav>
-			<div class="content-wrap">
-				<section id="section-topline-1">
-					<p>if the website score reach the Yellow area an automatic Issue Type Bug will be generated an autoassigned to  one of foursites beautiful developer to work on it</p>
-					<!-- <div id="chart_div" style="width: 400px; height: 180px;"></div> -->
-				</section>
-				<section id="section-topline-2">
-					<p>if the website score reach the Red area an automatic Issue Type Urgent will be generated an autoassigned to one of foursites beautiful developer to work on it </p>
-					<!-- <div id="chart_div1" style="width: 400px; height: 180px;"></div> -->
-				</section>
-			</div><!-- /content -->
-		</div><!-- /tabs -->
-	</section>
-</div><!-- /container -->
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <!-- <div class="wrap">
@@ -130,14 +142,6 @@ namespace admin;
 </div> -->
 <!-- <button id="posts-btn">LOAD POSTS</button> -->
 <div id="chart_div" style="width: 400px; height: 180px;"></div>
-<?php $user = new User('','');
-$arr=$user->PageSpeed('desktop');
-$arr1=$user->PageSpeed('mobile');
-
-$arr2=$user->Search();
-$user->userProfile();
-echo 'Speed:'.$arr[0].' Usability:'.$arr1[1];
-echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
 <div id="posts-container"></div>
 <div id="donutchart" style="width: 650px; height: 450px;"></div>
 <div class="jira-list">
@@ -290,7 +294,7 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
 					['Speed', <?php echo $arr[0]; ?>]
 					]);
 				var options = {
-					width: 400, height: 180,
+					width: 300, height: 200,
 					redFrom: 0, redTo: 20,
 					yellowFrom: 20, yellowTo: 50,
 					greenFrom:80, greenTo: 100,
@@ -309,11 +313,11 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
 			function drawChart() {
 				var data1 = google.visualization.arrayToDataTable([
 					['Label', 'Value'],
-					['Usability',<?php echo $arr1[0]; ?> ],
-					['Speed', <?php echo $arr1[1]; ?>]
+					['Usability',<?php echo $arr1[1]; ?> ],
+					['Speed', <?php echo $arr1[0]; ?>]
 					]);
 				var options1 = {
-					width: 400, height: 180,
+					width: 300, height: 200,
 					redFrom: 0, redTo: 20,
 					yellowFrom: 20, yellowTo: 50,
 					greenFrom:80, greenTo: 100,
@@ -350,70 +354,7 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1]; ?>
 	})( jQuery );
 </script>
 
-<!-- Script to Run the folder tab design for the pagespeed -->
-<script>
-	( function( window ) {
-		'use strict';
-		function extend( a, b ) {
-			for( var key in b ) {
-				if( b.hasOwnProperty( key ) ) {
-					a[key] = b[key];
-				}
-			}
-			return a;
-		}
-		function CBPFWTabs( el, options ) {
-			this.el = el;
-			this.options = extend( {}, this.options );
-			extend( this.options, options );
-			this._init();
-		}
-		CBPFWTabs.prototype.options = {
-			start : 0
-		};
-		CBPFWTabs.prototype._init = function() {
-		// tabs elems
-		this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li' ) );
-		// content items
-		this.items = [].slice.call( this.el.querySelectorAll( '.content-wrap > section' ) );
-		// current index
-		this.current = -1;
-		// show current content item
-		this._show();
-		// init events
-		this._initEvents();
-	};
-	CBPFWTabs.prototype._initEvents = function() {
-		var self = this;
-		this.tabs.forEach( function( tab, idx ) {
-			tab.addEventListener( 'click', function( ev ) {
-				ev.preventDefault();
-				self._show( idx );
-			} );
-		} );
-	};
-	CBPFWTabs.prototype._show = function( idx ) {
-		if( this.current >= 0 ) {
-			this.tabs[ this.current ].className = this.items[ this.current ].className = '';
-		}
-		// change current
-		this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.items.length ? this.options.start : 0;
-		this.tabs[ this.current ].className = 'tab-current';
-		this.items[ this.current ].className = 'content-current';
-	};
-	// add to global namespace
-	window.CBPFWTabs = CBPFWTabs;
-
-})( window );
-
-(function() {
-
-	[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-		new CBPFWTabs( el );
-	});
-
-})();
-</script>
+	
 <!-- modal for the update -->
 <div id="myModal" class="modalUpdate" >
 	<!-- Modal content -->

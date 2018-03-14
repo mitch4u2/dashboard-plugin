@@ -586,7 +586,7 @@ class User {
 				return array($speed,$usability);
 				/*$character->ruleGroups->SPEED->score
 				$character->ruleGroups->USABILITY->score*/
-			}else{echo 'EROOR MY BROTHER';}
+			}else{echo 'page speed error';}
 		}
 		curl_close($ch);
 	}
