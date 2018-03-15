@@ -47,13 +47,14 @@ namespace admin;
     <tr>
         <td class="tablist" rowspan="3">
             <ul class="homes-list">
+                <li data-cat='All' class="all active">All <span>68/<b></b> capabilities</span></li>
                 <li data-cat='General' class="single-storey">General <span>12/<b></b> capabilities</span></li>
                 <li data-cat='Themes' class="double-storey">Themes <span>6/<b></b> capabilities</span></li>
                 <li data-cat='Posts' class="house-and-land">Posts <span>13/<b></b> capabilities</span></li>
                 <li data-cat='Pages' class="develop-subdivide">Pages <span>11/<b></b> capabilities</span></li>
                 <li data-cat='Plugins' class="land-estate">Plugins <span>5/<b></b> capabilities</span></li>
                 <li data-cat='Users' class="apartments">Users <span>6/<b></b> capabilities</span></li>
-                <li data-cat='Custom' class="luxury-homes">Custom <span>8/<b></b> capabilities</span></li>
+               <!--  <li data-cat='Custom' class="luxury-homes">Custom <span>8/<b></b> capabilities</span></li> -->
             </ul>
         </td>
         <td class="fbox greentab">

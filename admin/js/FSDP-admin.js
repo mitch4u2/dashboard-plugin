@@ -275,7 +275,7 @@ var posts=['create_posts','delete_others_posts','delete_posts','delete_private_p
 var pages=['create_pages','delete_others_pages','delete_pages','delete_private_pages','delete_published_pages','edit_others_pages','edit_pages','edit_private_pages','edit_published_pages','publish_pages','read_private_pages'];
 var plugins=['activate_plugins','delete_plugins','edit_plugins','install_plugins','update_plugins'];
 var users=['create_users','delete_users','edit_users','list_users','promote_users','remove_users'];
-var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
+//var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
 var deprecated = ['edit_files','level_0','level_1','level_2','level_3','level_4','level_5','level_6','level_7','level_8','level_9','level_10'];
 var numgeneral=0;
 var numthemes =0;
@@ -283,7 +283,8 @@ var numposts=0;
 var numpages=0;
 var numplugins=0;
 var numusers=0;
-var numcustom =0;
+var numall=0
+//var numcustom =0;
 
 jQuery(document).ready( function ($)
 {
@@ -319,7 +320,9 @@ jQuery(document).ready( function ($)
 			});
 
 			$.each(capsadminuni,function(key,value)
-			{
+			{	
+				numall++;
+
 				if ($.inArray(value,general) > -1 ) {
 					numgeneral++;
 				}
@@ -338,9 +341,9 @@ jQuery(document).ready( function ($)
 				if ($.inArray(value,users) > -1 ) {
 					numusers++;
 				}
-				if ($.inArray(value,custom) > -1 ) {
+				/*if ($.inArray(value,custom) > -1 ) {
 					numcustom++;
-				}
+				}*/
 			});
 
 			//console.log(numgeneral);
@@ -350,7 +353,8 @@ jQuery(document).ready( function ($)
 			$(".develop-subdivide span b").html(numpages);
 			$(".land-estate span b").html(numplugins);
 			$(".apartments span b").html(numusers);
-			$(".luxury-homes span b").html(numcustom);
+			$(".all span b").html(numall);
+			//$(".luxury-homes span b").html(numcustom);
 
 
 			loaded = true;
@@ -386,6 +390,11 @@ jQuery(document).ready( function ($)
 
 	$( ".role" ).change(function()
 	{
+
+
+		$('.homes-list li').removeClass("active");
+    	$('.homes-list li').first().addClass("active");
+
 		$('ul#ungrantedtags').html('');
 		$('ul#grantedtags').html('');
 		var capsuni = new Array();
@@ -441,9 +450,10 @@ jQuery(document).ready( function ($)
 						}
 					}
 				}
-				numgeneral=numthemes=numposts=numpages=numplugins=numusers=numcustom=0;
+				numgeneral=numthemes=numposts=numpages=numplugins=numusers=numall=0;
 				$.each(capsuni,function(key,value)
 				{
+					numall++;
 					if ($.inArray(value,general) > -1 ) {
 						numgeneral++;
 					}
@@ -462,9 +472,9 @@ jQuery(document).ready( function ($)
 					if ($.inArray(value,users) > -1 ) {
 						numusers++;
 					}
-					if ($.inArray(value,custom) > -1 ) {
+					/*if ($.inArray(value,custom) > -1 ) {
 						numcustom++;
-					}
+					}*/
 				});
 
 			//console.log(numgeneral);
@@ -474,7 +484,8 @@ jQuery(document).ready( function ($)
 			$(".develop-subdivide span b").html(numpages);
 			$(".land-estate span b").html(numplugins);
 			$(".apartments span b").html(numusers);
-			$(".luxury-homes span b").html(numcustom);
+			$(".all span b").html(numall);
+			//$(".luxury-homes span b").html(numcustom);
 
 
 			$("#tags").sortable(
@@ -575,7 +586,8 @@ jQuery(document).ready( function ($)
 {	
 	$(".loadinglogo").css('display','none');
 	$(document).on('click','.homes-list li', function ()
-	{
+	{	
+
 		var catarr = new Array();
 		var cat = $(this).data('cat');
 		var color = '';
@@ -585,57 +597,51 @@ jQuery(document).ready( function ($)
 		var pages=['create_pages','delete_others_pages','delete_pages','delete_private_pages','delete_published_pages','edit_others_pages','edit_pages','edit_private_pages','edit_published_pages','publish_pages','read_private_pages'];
 		var plugins=['activate_plugins','delete_plugins','edit_plugins','install_plugins','update_plugins'];
 		var users=['create_users','delete_users','edit_users','list_users','promote_users','remove_users'];
-		var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
+		//var custom = ['ure_create_capabilities','ure_create_roles','ure_delete_capabilities','ure_delete_roles','ure_edit_roles','ure_manage_options','ure_reset_roles'];
 
 
-		$(".homes-list li").css('width','auto');
-		$(this).css('width','90%');
+		/*$(".homes-list li").css('width','auto');
+		$(this).css('width','90%');*/
+		$('.homes-list li').removeClass("active");
+    	$(this).addClass("active");
 
 		switch(cat) {
 			case 'General':
 			catarr = general;
-			color='#f67b4f';
 			break;
 			case 'Themes':
 			catarr = themes;
-			color='#32a8d9';
 			break;
 			case 'Posts':
 			catarr = posts;
-			color='#ff3232';
 			break;
 			case 'Pages':
 			catarr = pages;
-			color='#fdbc3b';
 			break;
 			case 'Plugins':
 			catarr = plugins;
-			color='#551A8B';
 			break;
 			case 'Users':
 			catarr = users;
-			color='#67d0c7';
-			break;
-			case 'Custom':
-			catarr = custom;
-			color='#566b8d';
 			break;
 			default:
 			catarr = '';
 		}
 
-		$( "ul#tags li a, ul#ungrantedtags li a").css("font-weight", "");
-		$( "ul#tags li span, ul#ungrantedtags li span ").css("background","");
-		$( "ul#tags li span, ul#ungrantedtags li span").css("border-color","");
+		$("ul#tags li, ul#ungrantedtags li").css("display", "none");
+
+		if (cat != 'All') {
 		$.each(catarr,function(key,value)
 		{
 			if (key!='null')
 			{
-				$( "#role_"+value+" a").css("font-weight", "bold");
-				$( "#role_"+value+" span").css("background", color);
-				$( "#role_"+value+" span").css("border-color", color+' '+color+' '+color);
+				$( "#role_"+value).css("display", "");
 			}
+
 		});
+
+		}
+		else{$("ul#tags li, ul#ungrantedtags li").css("display", "");}
 
 	});
 });
