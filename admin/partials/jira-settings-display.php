@@ -23,9 +23,6 @@
 
 <div class="tab-content">
 	<div id="tab-1" class="tab-pane active">
-
-
-
 		<ul class="nav-form">
 		<li class="login">
 

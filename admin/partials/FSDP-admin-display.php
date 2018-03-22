@@ -13,9 +13,15 @@ namespace admin;
  */
 ?>
 
-<?php $user = new User('','');
-$arr=$user->PageSpeed('desktop');
-$arr1=$user->PageSpeed('mobile');
+<?php
+$user = new User('','');
+/*$arr=$user->PageSpeed('desktop');
+$arr1=$user->PageSpeed('mobile');*/
+
+
+$arr=array(100, 80);
+$arr1=array(100, 80);
+
 
 //$arr2=$user->Search();
 //$user->userProfile();
@@ -24,13 +30,38 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 
 
 
+<div class='dashpage'>
 
 <div class="fsdp-header">
 	<div class="fsdp-logo"></div>
 	<br>
 </div>
 
-<h2>Modal Example</h2>
+<div class="container card-list">
+  <div class="cardstat blue">
+    <div class="title">Tickets</div><span class="dashicons dashicons-flag"></span>
+    <div class="value">89</div>
+    <div class="stat"><b>13</b>% increase</div>
+  </div>
+  <div class="cardstat green">
+    <div class="title">NEW features</div><span class="dashicons dashicons-plus-alt"></span>
+    <div class="value">3</div>
+    <div class="stat"><b>4</b>% increase</div>
+  </div>
+  <div class="cardstat orange">
+    <div class="title">Bug</div><span class="dashicons dashicons-hammer"></span>
+    <div class="value">53</div>
+    <div class="stat"><b>13</b>% decrease</div>
+  </div>
+  <div class="cardstat red">
+    <div class="title">Incident</div><span class="dashicons dashicons-admin-tools"></span>
+    <div class="value">0</div>
+    <div class="stat"><b>13</b>% decrease</div>
+  </div>
+</div>
+
+
+
 
 
 <!-- Trigger/Open The Modal -->
@@ -39,7 +70,7 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 <!-- The Modal -->
 
 
-<div class="rowstat">
+<!-- <div class="rowstat">
 	<ul>
 					<li>
 						<div class="rad-info-box rad-txt-success">
@@ -71,7 +102,7 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 					</li>
 					</ul>
 </div>
-
+ -->
 
 <div class="rowsgauge">
 	<ul>
@@ -115,7 +146,7 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 							<li><i class="dashicons dashicons-smartphone"></i></li>
 							<li><h3 class="panel-title"> mobile speed index</h3></li>
 						</ul>
-					</div><br>
+				</div><br>
 					<hr>
 				<div id="chart_div1"></div>
 				<hr>
@@ -124,6 +155,237 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 		</li>
 	</ul>
 </div>
+
+
+<br>
+<div class="projects">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Tickets List</div>
+      <div class="count">| 32 Ticket</div><span class="glyphicon glyphicon-download-alt"></span>
+    </header>
+    <table class="projects-table">
+		 <thead>
+			<tr>
+				<th>Key</th>
+				<th>Summary</th>
+				<th>Created</th>
+				<th>Assignee + Team</th>
+				<th>Type</th>
+				<th>Priority</th>
+				<th>Status</th>
+				<th>resolution</th>
+			</tr>
+		 </thead>
+      <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        	<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10303&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">BUG</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/blocker.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        	<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10311&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">New Feature</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/minor.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        	<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10303&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">BUG</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/critical.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        		<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10310&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">Improvement</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/major.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        	<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10303&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">BUG</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/trivial.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+         <td class="status">
+        	<span class="typecell"><img height="16" src="https://roymam.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10310&avatarType=issuetype" title="Bug - A problem which impairs or prevents the functions of the product." width="16">Improvement</span>
+        </td>
+        <td class="status">
+        	<img class="priority-icon" src="https://roymam.atlassian.net/images/icons/priorities/blocker.svg">
+        </td>
+         <td>
+         <span class="statusdone">DONE</span>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+   
+    </table>
+  </div>
+</div>
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -375,40 +637,40 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 	<!-- Modal content -->
 	<div class="modal-content">
 		<span class="close2">&times;</span>
-		<p class="issueKey"></p>
-		<h1 class='modaltitle'></h1>
+		<p class="issueKey">SUPPORT-6854</p>
+		<h1 class='modaltitle'>Fix logo bug</h1>
 
 		<span class='statusname' style='background-color: #4a6785;color:white;padding: 3px;border-radius: 5px;'>(opslaan)</span>
 
 		<ul class="timeline" id="timeline">
 			<li id="todo" class="li complete">
 				<div class="timestamp">
-					<span class="author">Foursites</span>
-					<span class="datetodo">../../..<span>
-					</div>
+					<span class="author">Daan Krayvanger</span>
+					<span class="datetodo">12/02/2018</span>
+				</div>
 					<div class="status">
 						<h4 style='background-color: #4a6785;color:white;padding: 3px;border-radius: 5px;'> TO DO </h4>
 					</div>
-				</li>
-				<li id="inprogress" class="li">
-					<div class="timestamp">
-						<span class="author">Foursites</span>
-						<span class="dateinprogress">../../..<span>
-						</div>
-						<div class="status">
+			</li>
+			<li id="inprogress" class="li">
+				<div class="timestamp">
+					<span class="author">Daan Krayvanger</span>
+					<span class="dateinprogress">12/02/2018</span>
+				</div>
+				<div class="status">
 							<h4 style='background-color: #EE7600;color:white;padding: 3px;border-radius: 5px;'> IN PROGRESS </h4>
-						</div>
-					</li>
-					<li id="done" class="li">
-						<div class="timestamp">
-							<span class="author">Foursites</span>
-							<span class="datedone">../../..<span>
-							</div>
-							<div class="status">
-								<h4 style='background-color: #14892c;color:white;padding: 3px;border-radius: 5px;'> DONE </h4>
-							</div>
-						</li>
-					</ul>
+				</div>
+			</li>
+			<li id="done" class="li">
+				<div class="timestamp">
+					<span class="author">Daan Krayvanger</span>
+					<span class="datedone">22/02/2018</span>
+				</div>
+				<div class="status">
+					<h4 style='background-color: #14892c;color:white;padding: 3px;border-radius: 5px;'> DONE </h4>
+				</div>
+			</li>
+		</ul>
 
 					<!-- COMMENT SECTION -->
 					<div class="comments">
@@ -436,4 +698,192 @@ echo 'Speed:'.$arr1[0].' Usability:'.$arr1[1];*/ ?>
 				</div>
 				<!--END COMMENT SECTION -->
 			</div>
-		</div>
+
+
+
+
+<button class='view button button-primary load-issue' data-key='".$issue->key."' data-url=".admin_url( 'admin-ajax.php' )." >View</button>
+
+
+<!-- new template -->
+
+
+<div class="container projects">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Tickets List</div>
+      <div class="count">| 32 Ticket</div><span class="glyphicon glyphicon-download-alt"></span>
+    </header>
+    <table class="projects-table">
+		 <thead>
+			<tr>
+				<th>Key</th>
+				<th>Summary</th>
+				<th>Created</th>
+				<th>Assignee + Team</th>
+				<th>Priority</th>
+				<th>Status</th>
+				<th>resolution</th>
+			</tr>
+		 </thead>
+      <tr>
+        <td>
+          <p>SUPPORT-6854</p>
+          <p></p>
+        </td>
+        <td>
+          <p>Fix logo bug</p>
+          <p></p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+        <td>
+          <p>UP</p>
+          <p></p>
+        </td>
+         <td>
+          <p>CLOSED</p>
+          <p></p>
+        </td>
+        <td>
+          <p>FIXED</p>
+          <p></p>
+        </td>
+      </tr>
+      <tr class="danger-item">
+        <td>
+          <p>New Dashboard</p>
+          <p>Google</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+        <td>
+          <p>$4,670</p>
+          <p>Paid</p>
+        </td>
+        <td class="status"><span class="status-text status-red">Blocked</span>
+          <form class="form" action="#" method="POST">
+            <select class="action-box">
+              <option>Actions</option>
+              <option>Start project</option>
+              <option>Send for QA</option>
+              <option>Send invoice</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>New Dashboard</p>
+          <p>Google</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+        <td>
+          <p>$4,670</p>
+          <p>Paid</p>
+        </td>
+        <td class="status"><span class="status-text status-orange">In progress</span>
+          <form class="form" action="#" method="POST">
+            <select class="action-box">
+              <option>Actions</option>
+              <option>Start project</option>
+              <option>Send for QA</option>
+              <option>Send invoice</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>New Dashboard</p>
+          <p>Google</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+        <td>
+          <p>$4,670</p>
+          <p>Paid</p>
+        </td>
+        <td class="status"><span class="status-text status-blue">Early stages</span>
+          <form class="form" action="#" method="POST">
+            <select class="action-box">
+              <option>Actions</option>
+              <option>Start project</option>
+              <option>Send for QA</option>
+              <option>Send invoice</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>New Dashboard</p>
+          <p>Google</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="danger-text">Overdue</p>
+        </td>
+        <td class="member">
+          <figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png"/></figure>
+          <div class="member-info">
+            <p>Myrtle Erickson</p>
+            <p>UK Design Team</p>
+          </div>
+        </td>
+        <td>
+          <p>$4,670</p>
+          <p>Paid</p>
+        </td>
+        <td class="status"><span class="status-text status-orange">In progress</span>
+          <form class="form" action="#" method="POST">
+            <select class="action-box">
+              <option>Actions</option>
+              <option>Start project</option>
+              <option>Send for QA</option>
+              <option>Send invoice</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
